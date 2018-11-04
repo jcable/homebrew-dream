@@ -1,21 +1,11 @@
-class QtWebEngine < Formula
+class Qtwebengine < Formula
   desc "Qt WebEngine"
   homepage "http://code.qt.io/cgit/qt/qtwebengine.git/"
   url "https://github.com/qt/qtwebengine/archive/v5.11.2.tar.gz"
-
-  depends_on "qt"
+  sha256 "ca545f1f3a401246ec6a9edd06a5bbe1302e590282277e5eb4035d70fd472d29"
 
   def install
-
-    args = ["-config", "release", "-spec"]
-    # On Mavericks we want to target libc++, this requires a unsupported/macx-clang-libc++ flag
-    if ENV.compiler == :clang && MacOS.version >= :mavericks
-      args << "macx-clang"
-    else
-      args << "macx-g++"
-    end
-
-    system "qmake", *args
+    system "qmake", "macx-clang"
     system "make"
     system "make", "install"
   end
@@ -38,7 +28,7 @@ class QtWebEngine < Formula
 
         return app.exec();
     }
-    EOS
+EOS
     system ENV.cxx, "test.cpp", "-o", "out",
       "-std=c++11",
       "-framework", "QtWebEngine", "-framework", "QtCore",
