@@ -9,13 +9,16 @@ class FaacDrm < Formula
                           "--disable-silent-rules",
                           "--prefix=#{prefix}",
                           "--without-mp4v2",
-                          "--enable-drm"
+                          "--enable-drm",
+                          "--enable-shared"
     system "make"
     mv "libfaac/.libs/libfaac.a", "libfaac/.libs/libfaac_drm.a"
+    mv "libfaac/.libs/libfaac.0.0.0.dylib", "libfaac/.libs/libfaac_drm.0.0.0.dylib"
     mv "libfaac/.libs/libfaac.0.dylib", "libfaac/.libs/libfaac_drm.0.dylib"
     lib.install "libfaac/.libs/libfaac_drm.a"
+    lib.install "libfaac/.libs/libfaac_drm.0.0.0.dylib"
     lib.install "libfaac/.libs/libfaac_drm.0.dylib"
-    lib.install_symlink "libfaac_drm.dylib" => "libfaac_drm.0.dylib"
+    lib.install_symlink "libfaac_drm.0.dylib" => "libfaac_drm.dylib"
   end
 
   test do
