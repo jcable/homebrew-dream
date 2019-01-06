@@ -1,7 +1,7 @@
 class Qtwebengine < Formula
   desc "Qt WebEngine"
   homepage "http://code.qt.io/cgit/qt/qtwebengine.git/"
-  url "https://github.com/qt/qtwebengine/archive/v5.11.2.tar.gz"
+  url "https://github.com/qt/qtwebengine/archive/v5.12.0.tar.gz"
   sha256 "ca545f1f3a401246ec6a9edd06a5bbe1302e590282277e5eb4035d70fd472d29"
 
   def install
