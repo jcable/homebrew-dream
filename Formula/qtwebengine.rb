@@ -2,7 +2,7 @@ class Qtwebengine < Formula
   desc "Qt WebEngine"
   homepage "http://code.qt.io/cgit/qt/qtwebengine.git/"
   url "https://github.com/qt/qtwebengine/archive/v5.12.0.tar.gz"
-  sha256 "ca545f1f3a401246ec6a9edd06a5bbe1302e590282277e5eb4035d70fd472d29"
+  sha256 "9ab5b67eb870d1c4a1eda6145219ee9a1c6e651e1a349d17800f439d2d82fb71"
 
   def install
     system "qmake", "macx-clang"
