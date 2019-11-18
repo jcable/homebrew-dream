@@ -5,7 +5,7 @@ class Dream < Formula
   desc ""
   homepage ""
   url "https://sourceforge.net/projects/drm/files/dream/2.2/dream_2.2.orig.tar.gz"
-  sha256 "55dc5ad9cb489851496b50a286d1398709dcb4e2f3808954176d6b6cb9c1244a"
+  sha256 "f7211ee3c19b42116b6d1f999d45007c1a9e62fee92906aa37d56eb00219ef56"
   depends_on "qt5"
   #depends_on "qtwebengine"
   depends_on "qwt"
