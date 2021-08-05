@@ -14,7 +14,7 @@ class Dream < Formula
   depends_on "libsndfile"
   depends_on "pulseaudio"
   depends_on "speexdsp"
-  depends_on "hamlib"
+  depends_on "hamlib" => "3.3"
   depends_on "fdk-aac"
 
   def install
