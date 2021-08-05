@@ -8,7 +8,7 @@ class Dream < Formula
   sha256 "f7211ee3c19b42116b6d1f999d45007c1a9e62fee92906aa37d56eb00219ef56"
   depends_on "qt5"
   #depends_on "qtwebengine"
-  depends_on "qwt"
+  depends_on "qwt" => "6.1.6"
   depends_on "fftw"
   depends_on "opus"
   depends_on "libsndfile"
