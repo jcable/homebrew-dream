@@ -6,12 +6,11 @@ class GpsdAT320 < Formula
   sha256 "3998a5cbb728e97f896f46c3c83301b1e6c5d859393e58c2fad8c5426774d571"
 
   bottle do
-    cellar :any
     rebuild 1
-    sha256 "22814a24acec9db78a5a0a13aa2d73773e15c648f3dd008bcbd4f088515c28ac" => :catalina
-    sha256 "000a6985fc4a8f295c2729a04cf0662f68370401afb573c62b051a1b2495da7f" => :mojave
-    sha256 "8259d06ad29227d59f70b9c4d84d20c764486fd7e6217bbf023fd003d3afe897" => :high_sierra
-    sha256 "a1840e937a0abdcd847abb9a3c9d735650fcb77088c97189c72abb2470dacdad" => :sierra
+    sha256 cellar: :any, catalina:    "22814a24acec9db78a5a0a13aa2d73773e15c648f3dd008bcbd4f088515c28ac"
+    sha256 cellar: :any, mojave:      "000a6985fc4a8f295c2729a04cf0662f68370401afb573c62b051a1b2495da7f"
+    sha256 cellar: :any, high_sierra: "8259d06ad29227d59f70b9c4d84d20c764486fd7e6217bbf023fd003d3afe897"
+    sha256 cellar: :any, sierra:      "a1840e937a0abdcd847abb9a3c9d735650fcb77088c97189c72abb2470dacdad"
   end
 
   depends_on "scons" => :build
@@ -30,7 +29,7 @@ class GpsdAT320 < Formula
     EOS
   end
 
-  plist_options :manual => "#{HOMEBREW_PREFIX}/sbin/gpsd -N -F #{HOMEBREW_PREFIX}/var/gpsd.sock /dev/tty.usbserial-XYZ"
+  plist_options manual: "#{HOMEBREW_PREFIX}/sbin/gpsd -N -F #{HOMEBREW_PREFIX}/var/gpsd.sock /dev/tty.usbserial-XYZ"
 
   def plist
     <<~EOS
