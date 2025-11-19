@@ -15,5 +15,5 @@ RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
 
 #[Optional] Uncomment this section to install additional packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get 
---qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers5-qmakelibqwt-qt5-devcontainers install --no-install-recommends qtbase5-dev qt5
+    && apt-get qt5-default qt5-qmake
+
