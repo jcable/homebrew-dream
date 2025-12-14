@@ -6,6 +6,20 @@
 		"dockerfile": "Dockerfile"
 	}
 
+	// Install recommended extensions into the container for C++ development
+	,"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.cmake-tools",
+				"ms-vscode.cpptools-extension-pack"
+			]
+		}
+	}
+
+	// Run quick checks after the container is created
+	,"postCreateCommand": "cmake --version && mkdir -p build"
+
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 

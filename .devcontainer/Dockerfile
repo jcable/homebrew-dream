@@ -13,8 +13,21 @@ RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
 # [Optional] Uncomment this section to install additional vcpkg ports.
 # RUN su vscode -c "${VCPKG_ROOT}/vcpkg install <your-port-name-here>"
 
-#[Optional] Uncomment this section to install additional packages.
-RUN apt-get update
-
+# Install common build dependencies used by this project and make
+# apt operations non-interactive and cleanup to keep the image small.
 RUN export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install libhamlib-dev
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
+        cmake \
+        ninja-build \
+        pkg-config \
+        git \
+        ca-certificates \
+        libhamlib-dev \
+        libqt5gui5 \
+        libqt5widgets5 \
+        qtbase5-dev \
+        qtbase5-dev-tools \
+        qt5-qmake \
+    && rm -rf /var/lib/apt/lists/*
