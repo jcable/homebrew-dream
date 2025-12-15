@@ -67,6 +67,8 @@ jobs:
         echo "INCLUDE=$VCPKG_ROOT/installed/x64-windows/include;$INCLUDE" >> $GITHUB_ENV
         echo "LIB=$VCPKG_ROOT/installed/x64-windows/lib;$LIB" >> $GITHUB_ENV
 
+    - uses: ilammy/msvc-dev-cmd@v1
+
     - name: Build
       run: |
         qmake
