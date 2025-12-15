@@ -32,11 +32,11 @@ jobs:
       uses: actions/setup-python@v6
 
     - name: Install hamlib
-      uses: jaxxstorm/action-install-gh-release@v1.10.0
-      with: # Grab the latest version
-        repo: Hamlib/Hamlib
-        asset-name: hamlib-w64-4.6.5.zip
-        
+      uses: robinraju/release-downloader@v1
+      with:
+        repository: 'Hamlib/Hamlib'
+        tag: 'v1.0.0'
+        fileName: 'hamlib-w64-4.6.5.zip'
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
