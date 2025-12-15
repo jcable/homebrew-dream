@@ -30,18 +30,10 @@ jobs:
       
     - name: Checkout code
       uses: actions/checkout@v4
-  
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v3
-      with:
-        version: 5.15.2
-        host: windows
-        target: desktop
-        arch: win64_msvc2019_64
 
     - name: Install dependencies with vcpkg
       run: |
-        vcpkg install qwt fftw3 zlib libsndfile hamlib fdk-aac opus speexdsp pcap --triplet x64-windows
+        vcpkg install qt5 qwt fftw3 zlib libsndfile fdk-aac opus speexdsp pcap --triplet x64-windows
 
     - name: Set environment for MSVC
       run: |
