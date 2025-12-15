@@ -31,10 +31,10 @@ jobs:
     - name: Install python
       uses: actions/setup-python@v6
 
-  - name: Install hamlib
-    uses: jaxxstorm/action-install-gh-release@v1.10.0
-    with: # Grab the latest version
-      repo: Hamlib/Hamlib
+    - name: Install hamlib
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
+      with: # Grab the latest version
+        repo: Hamlib/Hamlib
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
