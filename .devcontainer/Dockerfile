@@ -31,7 +31,11 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         libopus-dev \
         libsndfile-dev \
         libspeexdsp-dev \
+        libgps-dev \
         libfdk-aac-dev \
+        libsoapysdr-dev \
+        libqt5svg5-dev \
+        libqt5opengl5-dev \
         libqt5gui5 \
         libqt5widgets5 \
         qtbase5-dev \
