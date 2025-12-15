@@ -47,7 +47,7 @@ jobs:
     - name: Move Hamlib files
       shell: bash
       run: |
-        ls 
+        ls -R
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
