@@ -41,7 +41,7 @@ jobs:
 
     - name: Install dependencies with vcpkg # libsndfile fdk-aac opus speexdsp soapysdr qwt
       run: |
-        vcpkg install fftw3 zlib libpcap --triplet x64-windows
+        vcpkg install fftw3 zlib libpcap qwt fdk-aac --triplet x64-windows
 
     - name: Download hamlib
       uses: robinraju/release-downloader@v1
