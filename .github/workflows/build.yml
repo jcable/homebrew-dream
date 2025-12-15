@@ -1,0 +1,76 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt update
+        sudo apt install -y qt5-default libqwt-qt5-dev libfftw3-dev libopus-dev libsndfile1-dev libpulse-dev libspeexdsp-dev libhamlib-dev libfdk-aac-dev
+
+    - name: Install Qt (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: 5.15.2
+        host: windows
+        target: desktop
+        arch: win64_msvc2019_64
+
+    - name: Setup vcpkg (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: microsoft/setup-vcpkg@v1
+
+    - name: Install dependencies with vcpkg (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        vcpkg install qwt fftw3 zlib libsndfile hamlib fdk-aac opus speexdsp pcap --triplet x64-windows
+
+    - name: Modify .pro for MSVC (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        sed -i 's/-llibfftw3-3/-lfftw3/' dream.pro
+        sed -i 's/-lzlib/-lz/' dream.pro
+        sed -i 's/-llibsndfile-1/-lsndfile/' dream.pro
+        sed -i 's/-llibhamlib-2/-lhamlib/' dream.pro
+        sed -i 's/-lwpcap/-lpcap/' dream.pro
+        sed -i 's/-lpacket//' dream.pro
+
+    - name: Set environment for MSVC (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        echo "INCLUDE=$VCPKG_ROOT/installed/x64-windows/include;$INCLUDE" >> $GITHUB_ENV
+        echo "LIB=$VCPKG_ROOT/installed/x64-windows/lib;$LIB" >> $GITHUB_ENV
+
+    - name: Build (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        qmake
+        make
+
+    - name: Build (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        qmake
+        nmake
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: dream-${{ matrix.os }}
+        path: ${{ matrix.os == 'ubuntu-latest' && 'dream' || 'dream.exe' }}
