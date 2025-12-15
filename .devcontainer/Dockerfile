@@ -25,6 +25,13 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         git \
         ca-certificates \
         libhamlib-dev \
+        libpulse-dev \
+        libqwt-qt5-dev \
+        libfftw3-dev \
+        libopus-dev \
+        libsndfile-dev \
+        libspeexdsp-dev \
+        libfdk-aac-dev \
         libqt5gui5 \
         libqt5widgets5 \
         qtbase5-dev \
