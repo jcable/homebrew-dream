@@ -31,17 +31,21 @@ jobs:
     - name: Install python
       uses: actions/setup-python@v6
 
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: '5.15.2'
+    # - name: Install Qt
+    #   uses: jurplel/install-qt-action@v4
+    #   with:
+    #     version: '5.15.2'
   
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install dependencies with vcpkg # libsndfile fdk-aac opus speexdsp soapysdr qwt
+    - name: Install qt with vcpkg # libsndfile fdk-aac opus speexdsp soapysdr qwt
       run: |
-        vcpkg install fftw3 zlib libpcap qwt fdk-aac --triplet x64-windows
+        vcpkg install qwt --triplet x64-windows
+
+    - name: Install dependencies with vcpkg
+      run: |
+        vcpkg install fftw3 zlib libpcap libsndfile fdk-aac opus speexdsp soapysdr --triplet x64-windows
 
     - name: Download hamlib
       uses: robinraju/release-downloader@v1
@@ -56,7 +60,7 @@ jobs:
         file_path: 'hamlib-w64-4.6.5.zip'
         verbose: true
 
-    - name: Add Hamlib files
+    - name: Add Hamlib files to path
       shell: bash
       run: |
         echo "INCLUDE=${{ github.workspace }}/hamlib-w64-4.6.5/include;$INCLUDE" >> $GITHUB_ENV 
