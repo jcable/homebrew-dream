@@ -31,6 +31,11 @@ jobs:
     - name: Install python
       uses: actions/setup-python@v6
 
+  - name: Install hamlib
+    uses: jaxxstorm/action-install-gh-release@v1.10.0
+    with: # Grab the latest version
+      repo: Hamlib/Hamlib
+
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
@@ -39,15 +44,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install dependencies with vcpkg
+    - name: Install dependencies with vcpkg # libsndfile fdk-aac opus speexdsp soapysdr
       run: |
-        vcpkg install qwt fftw3 zlib libsndfile fdk-aac opus speexdsp libpcap soapysdr --triplet x64-windows
-
-    - name: Install hamlib
-      run: |
-        curl -LO https://github.com/Hamlib/Hamlib/releases/download/4.6.5/hamlib-w32-4.6.5.exe
-        ./hamlib-w32-4.6.5
-      shell: bash
+        vcpkg install qwt fftw3 zlib libpcap --triplet x64-windows
 
     - name: Set environment for MSVC
       run: |
