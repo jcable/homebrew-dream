@@ -7,11 +7,49 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: 5.15.2
+        host: windows
+        target: desktop
+        arch: win64_msvc2019_64
+
+    - name: Setup vcpkg
+      uses: microsoft/setup-vcpkg@v1
+
+    - name: Install dependencies with vcpkg
+      run: |
+        vcpkg install qwt fftw3 zlib libsndfile hamlib fdk-aac opus speexdsp pcap --triplet x64-windows
+
+    - name: Set environment for MSVC
+      run: |
+        echo "INCLUDE=$VCPKG_ROOT/installed/x64-windows/include;$INCLUDE" >> $GITHUB_ENV
+        echo "LIB=$VCPKG_ROOT/installed/x64-windows/lib;$LIB" >> $GITHUB_ENV
+
+    - name: Build
+      run: |
+        qmake
+        nmake
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: dream-windows
+        path: dream.exe
+      
+  build-everything-else:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
 
     steps:
     - name: Checkout code
@@ -21,46 +59,18 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         sudo apt update
-        sudo apt install -y qt5-default libqwt-qt5-dev libfftw3-dev libopus-dev libsndfile1-dev libpulse-dev libspeexdsp-dev libhamlib-dev libfdk-aac-dev
+        sudo apt install -y libhamlib-dev libpulse-dev libfftw3-dev libopus-dev libsndfile-dev
+        sudo apt install -y libspeexdsp-dev libgps-dev libpcap-dev libfdk-aac-dev libsoapysdr-dev
+        sudo apt install -y libqwt-qt5-dev libqt5svg5-dev libqt5opengl5-dev libqt5gui5 libqt5widgets5
+        sudo apt install -y qtbase5-dev qtbase5-dev-tools qt5-qmake
 
-    - name: Install Qt (Windows)
-      if: matrix.os == 'windows-latest'
-      uses: jurplel/install-qt-action@v3
-      with:
-        version: 5.15.2
-        host: windows
-        target: desktop
-        arch: win64_msvc2019_64
-
-    - name: Setup vcpkg (Windows)
-      if: matrix.os == 'windows-latest'
-      uses: microsoft/setup-vcpkg@v1
-
-    - name: Install dependencies with vcpkg (Windows)
-      if: matrix.os == 'windows-latest'
-      run: |
-        vcpkg install qwt fftw3 zlib libsndfile hamlib fdk-aac opus speexdsp pcap --triplet x64-windows
-
-    - name: Set environment for MSVC (Windows)
-      if: matrix.os == 'windows-latest'
-      run: |
-        echo "INCLUDE=$VCPKG_ROOT/installed/x64-windows/include;$INCLUDE" >> $GITHUB_ENV
-        echo "LIB=$VCPKG_ROOT/installed/x64-windows/lib;$LIB" >> $GITHUB_ENV
-
-    - name: Build (Ubuntu)
-      if: matrix.os == 'ubuntu-latest'
+    - name: Build
       run: |
         qmake
         make
-
-    - name: Build (Windows)
-      if: matrix.os == 'windows-latest'
-      run: |
-        qmake
-        nmake
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: dream-${{ matrix.os }}
-        path: ${{ matrix.os == 'ubuntu-latest' && 'dream' || 'dream.exe' }}
+        path: dream
