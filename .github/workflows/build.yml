@@ -59,7 +59,7 @@ jobs:
     - name: Move Hamlib files
       shell: bash
       run: |
-        ls ./hamlib-w64-4.6.5/include/
+        ls -R
         mv ./hamlib-w64-4.6.5/include/hamlib $VCPKG_ROOT/installed/x64-windows/include
         mv ./hamlib-w64-4.6.5/lib/msvc/libhamlib-4.def $VCPKG_ROOT/installed/x64-windows/lib
 
