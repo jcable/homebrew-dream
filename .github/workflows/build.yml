@@ -40,7 +40,7 @@ jobs:
       uses: robinraju/release-downloader@v1
       with:
         repository: 'buaabyl/qwt_windows'
-        tag: 'qwt-plugins-for-qt-creator-4.9'
+        tag: 'qtcreator-4.9-plugins'
         fileName: 'qt-5.12.4-msvc2017_amd64.zip'
         extract: true
 
