@@ -41,7 +41,7 @@ jobs:
 
     - name: Install dependencies with vcpkg
       run: |
-        vcpkg install qt5 qwt fftw3 zlib libsndfile fdk-aac opus speexdsp libpcap soapysdr --triplet x64-windows
+        vcpkg install qwt fftw3 zlib libsndfile fdk-aac opus speexdsp libpcap soapysdr --triplet x64-windows
 
     - name: Set environment for MSVC
       run: |
