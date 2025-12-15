@@ -31,17 +31,28 @@ jobs:
     - name: Install python
       uses: actions/setup-python@v6
 
-    # - name: Install Qt
-    #   uses: jurplel/install-qt-action@v4
-    #   with:
-    #     version: '5.15.2'
-  
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '5.15.2'
+
+    - name: Download qwt
+      uses: robinraju/release-downloader@v1
+      with:
+        repository: 'buaabyl/qwt_windows'
+        fileName: 'qt-5.12.4-msvc2017_amd64.zip'
+
+    - name: Extract qwt
+      uses: ihiroky/extract-action@v1
+      with:
+        file_path: 'qt-5.12.4-msvc2017_amd64.zip'
+
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install qt with vcpkg # libsndfile fdk-aac opus speexdsp soapysdr qwt
-      run: |
-        vcpkg install qwt --triplet x64-windows
+    # - name: Install qt with vcpkg # libsndfile fdk-aac opus speexdsp soapysdr qwt
+    #   run: |
+    #     vcpkg install qwt --triplet x64-windows
 
     - name: Install dependencies with vcpkg
       run: |
@@ -63,8 +74,9 @@ jobs:
     - name: Add Hamlib files to path
       shell: bash
       run: |
-        echo "INCLUDE=${{ github.workspace }}/hamlib-w64-4.6.5/include;$INCLUDE" >> $GITHUB_ENV 
-        echo "LIB=${{ github.workspace }}/hamlib-w64-4.6.5/lib/msvc;$LIB" >> $GITHUB_ENV
+        ls -R
+        echo "INCLUDE=${{ github.workspace }}/qt-5.12.4-msvc2017_amd64/include;$INCLUDE" >> $GITHUB_ENV 
+        echo "LIB=${{ github.workspace }}/qt-5.12.4-msvc2017_amd64/lib;$LIB" >> $GITHUB_ENV
 
     - name: Set environment for MSVC
       run: |
