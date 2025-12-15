@@ -32,6 +32,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         libsndfile-dev \
         libspeexdsp-dev \
         libgps-dev \
+        libpcap-dev \
         libfdk-aac-dev \
         libsoapysdr-dev \
         libqt5svg5-dev \
