@@ -36,14 +36,6 @@ jobs:
       with:
         version: '5.12.4'
 
-    - name: Download qwt
-      uses: robinraju/release-downloader@v1
-      with:
-        repository: 'buaabyl/qwt_windows'
-        tag: 'qtcreator-4.9-plugins'
-        fileName: 'qt-5.12.4-msvc2017_amd64.zip'
-        extract: true
-
     - name: Checkout code
       uses: actions/checkout@v4
 
@@ -63,10 +55,20 @@ jobs:
         fileName: 'hamlib-w64-4.6.5.zip'
         extract: true
 
-    - name: Add Hamlib files to path
+    - name: Download qwt
+      uses: robinraju/release-downloader@v1
+      with:
+        repository: 'buaabyl/qwt_windows'
+        tag: 'qtcreator-4.9-plugins'
+        fileName: 'qt-5.12.4-msvc2017_amd64.zip'
+        extract: true
+
+    - name: Add Hamlib and qwt files to path
       shell: bash
       run: |
         ls -R
+        echo "INCLUDE=${{ github.workspace }}/hamlib-w64-4.6.5/include;$INCLUDE" >> $GITHUB_ENV 
+        echo "LIB=${{ github.workspace }}/hamlib-w64-4.6.5/lib/msvc;$LIB" >> $GITHUB_ENV
         echo "INCLUDE=${{ github.workspace }}/qt-5.12.4-msvc2017_amd64/include;$INCLUDE" >> $GITHUB_ENV 
         echo "LIB=${{ github.workspace }}/qt-5.12.4-msvc2017_amd64/lib;$LIB" >> $GITHUB_ENV
 
