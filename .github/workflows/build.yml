@@ -39,9 +39,6 @@ jobs:
         target: desktop
         arch: win64_msvc2019_64
 
-    - name: Setup vcpkg
-      uses: microsoft/setup-vcpkg@v1
-
     - name: Install dependencies with vcpkg
       run: |
         vcpkg install qwt fftw3 zlib libsndfile hamlib fdk-aac opus speexdsp pcap --triplet x64-windows
