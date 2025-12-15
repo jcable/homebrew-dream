@@ -35,8 +35,7 @@ jobs:
       uses: jaxxstorm/action-install-gh-release@v1.10.0
       with: # Grab the latest version
         repo: Hamlib/Hamlib
-        tag: 4.6.5
-        asset-name: hamlib-w64-4.6.5
+        asset-name: hamlib-w64-4.6.5.zip
         
 
     - name: Install Qt
