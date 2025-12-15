@@ -42,12 +42,12 @@ jobs:
       uses: ihiroky/extract-action@v1
       with:
         file_path: 'hamlib-w64-4.6.5.zip'
-        extract_dir: /tmp
+        verbose: true
 
     - name: Move Hamlib files
       shell: bash
       run: |
-        ls /tmp/
+        ls 
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
