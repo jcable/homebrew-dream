@@ -31,6 +31,18 @@ jobs:
     - name: Install python
       uses: actions/setup-python@v6
 
+    # - name: Install Qt
+    #   uses: jurplel/install-qt-action@v4
+    #   with:
+    #     version: '5.15.2'
+  
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies with vcpkg # libsndfile fdk-aac opus speexdsp soapysdr qwt
+      run: |
+        vcpkg install fftw3 zlib libpcap --triplet x64-windows
+
     - name: Download hamlib
       uses: robinraju/release-downloader@v1
       with:
@@ -43,18 +55,6 @@ jobs:
       with:
         file_path: 'hamlib-w64-4.6.5.zip'
         verbose: true
-
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: '5.15.2'
-  
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Install dependencies with vcpkg # libsndfile fdk-aac opus speexdsp soapysdr qwt
-      run: |
-        vcpkg install fftw3 zlib libpcap --triplet x64-windows
 
     - name: Move Hamlib files
       shell: bash
