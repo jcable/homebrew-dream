@@ -40,13 +40,9 @@ jobs:
       uses: robinraju/release-downloader@v1
       with:
         repository: 'buaabyl/qwt_windows'
-        tag: latest
+        tag: 'qwt-plugins-for-qt-creator-4.9'
         fileName: 'qt-5.12.4-msvc2017_amd64.zip'
-
-    - name: Extract qwt
-      uses: ihiroky/extract-action@v1
-      with:
-        file_path: 'qt-5.12.4-msvc2017_amd64.zip'
+        extract: true
 
     - name: Checkout code
       uses: actions/checkout@v4
@@ -65,12 +61,7 @@ jobs:
         repository: 'Hamlib/Hamlib'
         tag: '4.6.5'
         fileName: 'hamlib-w64-4.6.5.zip'
-
-    - name: Extract Hamlib
-      uses: ihiroky/extract-action@v1
-      with:
-        file_path: 'hamlib-w64-4.6.5.zip'
-        verbose: true
+        extract: true
 
     - name: Add Hamlib files to path
       shell: bash
