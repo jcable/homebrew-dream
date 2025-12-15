@@ -55,7 +55,15 @@ jobs:
         fileName: 'hamlib-w64-4.6.5.zip'
         extract: true
 
-    - name: Download qwt
+    - name: Download qwt src
+      uses: robinraju/release-downloader@v1
+      with:
+        repository: 'buaabyl/qwt_windows'
+        tag: 'qtcreator-4.9-plugins'
+        fileName: 'qtcreator-4.9-plugins.zip'
+        extract: true
+
+    - name: Download qwt bin
       uses: robinraju/release-downloader@v1
       with:
         repository: 'buaabyl/qwt_windows'
@@ -69,8 +77,8 @@ jobs:
         ls -R
         echo "INCLUDE=${{ github.workspace }}/hamlib-w64-4.6.5/include;$INCLUDE" >> $GITHUB_ENV 
         echo "LIB=${{ github.workspace }}/hamlib-w64-4.6.5/lib/msvc;$LIB" >> $GITHUB_ENV
-        echo "INCLUDE=${{ github.workspace }}/qt-5.12.4-msvc2017_amd64/include;$INCLUDE" >> $GITHUB_ENV 
-        echo "LIB=${{ github.workspace }}/qt-5.12.4-msvc2017_amd64/lib;$LIB" >> $GITHUB_ENV
+        echo "INCLUDE=${{ github.workspace }}/qtcreator-4.9-plugins/include;$INCLUDE" >> $GITHUB_ENV 
+        echo "LIB=${{ github.workspace }}/qt-5.12.4-msvc2017_amd64;$LIB" >> $GITHUB_ENV
 
     - name: Set environment for MSVC
       run: |
