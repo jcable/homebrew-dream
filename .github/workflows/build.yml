@@ -41,16 +41,6 @@ jobs:
       run: |
         vcpkg install qwt fftw3 zlib libsndfile hamlib fdk-aac opus speexdsp pcap --triplet x64-windows
 
-    - name: Modify .pro for MSVC (Windows)
-      if: matrix.os == 'windows-latest'
-      run: |
-        sed -i 's/-llibfftw3-3/-lfftw3/' dream.pro
-        sed -i 's/-lzlib/-lz/' dream.pro
-        sed -i 's/-llibsndfile-1/-lsndfile/' dream.pro
-        sed -i 's/-llibhamlib-2/-lhamlib/' dream.pro
-        sed -i 's/-lwpcap/-lpcap/' dream.pro
-        sed -i 's/-lpacket//' dream.pro
-
     - name: Set environment for MSVC (Windows)
       if: matrix.os == 'windows-latest'
       run: |
