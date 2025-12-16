@@ -78,7 +78,7 @@ jobs:
         ls -R
         echo "INCLUDE=${{ github.workspace }}/hamlib-w64-4.6.5/include;$INCLUDE" >> $GITHUB_ENV 
         echo "LIB=${{ github.workspace }}/hamlib-w64-4.6.5/lib/msvc;$LIB" >> $GITHUB_ENV
-        echo "INCLUDE=${{ github.workspace }}/qtcreator-4.9-plugins/include;$INCLUDE" >> $GITHUB_ENV 
+        echo "INCLUDE=${{ github.workspace }}/buaabyl-qwt_windows-d0644a6/src;$INCLUDE" >> $GITHUB_ENV 
         echo "LIB=${{ github.workspace }}/qt-5.12.4-msvc2017_amd64;$LIB" >> $GITHUB_ENV
 
     - name: Set environment for MSVC
