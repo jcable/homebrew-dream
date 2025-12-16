@@ -59,7 +59,6 @@ jobs:
       uses: robinraju/release-downloader@v1
       with:
         repository: 'buaabyl/qwt_windows'
-        #tag: 'qtcreator-4.9-plugins'
         latest: true
         zipBall: true
         extract: true
@@ -75,15 +74,15 @@ jobs:
     - name: Move qwt files somewhere nicer
       shell: bash
       run: |
-        mkdir -p qwt/include
-        mkdir qwt/lib
-        cp ./buaabyl-qwt_windows-d0644a6/src/*.h qwt/include
-        cp ./qt-5.12.4-msvc2017_amd64/* qwt/lib
+        mkdir -p include/qwt
+        mkdir lib
+        cp ./buaabyl-qwt_windows-d0644a6/src/*.h include/qwt
+        cp ./qt-5.12.4-msvc2017_amd64/* lib
 
     - name: Set environment for MSVC
       run: |
-        echo "INCLUDE=$VCPKG_ROOT/installed/x64-windows/include;${{ github.workspace }}/hamlib-w64-4.6.5/include;${{ github.workspace }}/qwt/include;$INCLUDE" >> $GITHUB_ENV
-        echo "LIB=$VCPKG_ROOT/installed/x64-windows/lib;${{ github.workspace }}/hamlib-w64-4.6.5/lib/msvc;${{ github.workspace }}/qwt/lib;$LIB" >> $GITHUB_ENV
+        echo "INCLUDE=$VCPKG_ROOT/installed/x64-windows/include;${{ github.workspace }}/hamlib-w64-4.6.5/include;${{ github.workspace }}/include/qwt;$INCLUDE" >> $GITHUB_ENV
+        echo "LIB=$VCPKG_ROOT/installed/x64-windows/lib;${{ github.workspace }}/hamlib-w64-4.6.5/lib/msvc;${{ github.workspace }}/lib;$LIB" >> $GITHUB_ENV
 
     - uses: ilammy/msvc-dev-cmd@v1
 
