@@ -61,7 +61,7 @@
 
 
 #ifdef _WIN32
-#include "helper.h"
+#include "../../windows/platform_util.h"
 #endif
 
 #include <algorithm>
