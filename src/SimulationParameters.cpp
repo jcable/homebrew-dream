@@ -26,8 +26,7 @@
  *
 \******************************************************************************/
 
-#i
-nclude "DrmSimulation.h"
+#include "DrmSimulation.h"
 #ifdef _WIN32
 #else
 #include <unistd.h>
