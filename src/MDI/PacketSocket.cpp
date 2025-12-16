@@ -111,7 +111,7 @@ CPacketSocketNative::SendPacket(const vector < _BYTE > &vecbydata, uint32_t, uin
         if (result<0)
         {
             cerr << "send() returned " << result <<endl;
-            close(s);
+            // close(s);
             s = INVALID_SOCKET;
             SetDestination(dest);
         }
