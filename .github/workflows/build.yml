@@ -86,8 +86,9 @@ jobs:
     - name: Configure build
       run: qmake
 
+    - uses: ilammy/msvc-dev-cmd@v1
+
     - name: Build
-      uses: ilammy/msvc-dev-cmd@v1
       run: nmake
 
     - name: Upload artifact
@@ -99,7 +100,7 @@ jobs:
   build-everything-else:
     runs-on: ${{ matrix.os }}
     strategy:
-      matrix:
+      matrix
         os: [ubuntu-latest]
 
     steps:
