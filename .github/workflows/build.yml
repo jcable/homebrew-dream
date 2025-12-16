@@ -59,7 +59,9 @@ jobs:
       uses: robinraju/release-downloader@v1
       with:
         repository: 'buaabyl/qwt_windows'
-        tag: 'qtcreator-4.9-plugins'
+        #tag: 'qtcreator-4.9-plugins'
+        latest: true
+        zipBall: true
         extract: true
 
     - name: Download qwt bin
