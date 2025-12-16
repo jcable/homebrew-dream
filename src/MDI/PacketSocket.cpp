@@ -53,9 +53,7 @@ typedef int SOCKET;
 # define SOCKET_ERROR				(-1)
 # define INVALID_SOCKET				(-1)
 #endif
-//# include <sys/types.h>
-//# include <sys/socket.h>
-# include <unistd.h>
+//# include <unistd.h>
 # include <fcntl.h>
 
 using namespace std;
