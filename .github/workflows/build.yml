@@ -100,13 +100,12 @@ jobs:
         cp -r C:/vcpkg/installed/x64-windows/lib lib
         cp hamlib-w64-4.6.5/lib/msvc/* lib
 
-    - name: Configure build
-      run: qmake
-
     - uses: ilammy/msvc-dev-cmd@v1
 
     - name: Build
-      run: nmake
+      run: |
+        qmake
+        nmake
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
