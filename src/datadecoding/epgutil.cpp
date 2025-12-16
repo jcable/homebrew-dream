@@ -51,7 +51,11 @@ mkdirs (const string & path)
 	  string dir = path.substr (p, q - p);
 	  left += sep + dir;
 	  sep = "/";
-	  mkdir (left.c_str (), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+#if defined(_WIN32) || defined(_WIN64)
+      _mkdir (left.c_str());
+#else
+	  mkdir (left.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+#endif
 	  p = q + 1;
       }
 }
