@@ -75,11 +75,15 @@ jobs:
     - name: Add Hamlib and qwt files to path
       shell: bash
       run: |
-        ls -R
+        mkdir -p qwt/include
+        mkdir qwt/lib
+        cp ./buaabyl-qwt_windows-d0644a6/src/*.h qwt/include
+        cp ./qt-5.12.4-msvc2017_amd64/* qwt/lib
+        ls -R qwt
         echo "INCLUDE=${{ github.workspace }}/hamlib-w64-4.6.5/include;$INCLUDE" >> $GITHUB_ENV 
         echo "LIB=${{ github.workspace }}/hamlib-w64-4.6.5/lib/msvc;$LIB" >> $GITHUB_ENV
-        echo "INCLUDE=${{ github.workspace }}/buaabyl-qwt_windows-d0644a6/src;$INCLUDE" >> $GITHUB_ENV 
-        echo "LIB=${{ github.workspace }}/qt-5.12.4-msvc2017_amd64;$LIB" >> $GITHUB_ENV
+        echo "INCLUDE=${{ github.workspace }}/qwt/include;$INCLUDE" >> $GITHUB_ENV 
+        echo "LIB=${{ github.workspace }}/qwt/lib;$LIB" >> $GITHUB_ENV
 
     - name: Set environment for MSVC
       run: |
