@@ -63,6 +63,8 @@
 #ifdef _MSC_VER
 #define TIM_DEF
 #include <wtypes.h>
+#include <winsock2.h>
+#include <windows.h>
 #undef min
 
 #pragma warning(disable: 4100)
@@ -194,6 +196,10 @@ unsigned long NEWS_SVC_DEC_putData(
 
 	struct timeval reception_time;
 
+ifdef _WIN32
+	time((time_t *)&(reception_time.tv_sec));
+	reception_time.tv_usec=GetTickCount();
+#else
 	struct timezone tz;
 	if(gettimeofday(&reception_time, &tz))
 	{
@@ -202,7 +208,7 @@ unsigned long NEWS_SVC_DEC_putData(
 			log_err << "gettimeofday failed" << endmsg;
 		}
 	}
-
+#endif
 #if 0
 	log_err << "received object at time:" << reception_time.tv_sec << ":"
 		<< reception_time.tv_usec << endmsg;
