@@ -32,7 +32,9 @@
 #include <iostream>
 #include <sstream>
 #include <sys/stat.h>
-
+#if defined(_WIN32) || defined(_WIN64)
+# include	<direct.h> 
+#endif   
 using namespace std;
 
 void
