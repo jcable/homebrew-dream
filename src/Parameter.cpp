@@ -957,9 +957,9 @@ void CParameter::SetDataDirectory(string sNewDataFilesDirectory)
         sNewDataFilesDirectory = DEFAULT_DATA_FILES_DIRECTORY;
     else
     {
-        size_t p = sNewDataFilesDirectory.find_last_of(PATH_SEPARATORS);
+        size_t p = sNewDataFilesDirectory.find_last_of("/");
         if (p == string::npos || p != (sNewDataFilesDirectory.size()-1))
-            sNewDataFilesDirectory += PATH_SEPARATOR;
+            sNewDataFilesDirectory += "/";
     }
     sDataFilesDirectory = sNewDataFilesDirectory;
 }
