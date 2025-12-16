@@ -46,6 +46,7 @@ if I run it with the command:
 #ifdef _WIN32
 # include <winsock2.h>
 # include <ws2tcpip.h>
+#define MSG_DONTWAIT 0
 #else
 # include <netinet/in.h>
 # include <arpa/inet.h>
@@ -54,7 +55,7 @@ typedef int SOCKET;
 # define SOCKET_ERROR				(-1)
 # define INVALID_SOCKET				(-1)
 #endif
-//# include <unistd.h>
+
 # include <fcntl.h>
 
 using namespace std;
@@ -385,11 +386,7 @@ CPacketSocketNative::pollStream()
 {
     vector < _BYTE > vecbydata(MAX_SIZE_BYTES_NETW_BUF);
     /* Read block from network interface */
-#ifdef _WIN32
-    int iNumBytesRead = ::recv(s, (char *) &vecbydata[0], MAX_SIZE_BYTES_NETW_BUF);
-#else
     int iNumBytesRead = ::recv(s, (char *) &vecbydata[0], MAX_SIZE_BYTES_NETW_BUF, MSG_DONTWAIT);
-#endif
     if (iNumBytesRead > 0)
     {
         /* Decode the incoming packet */
