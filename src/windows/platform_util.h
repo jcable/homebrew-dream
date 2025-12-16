@@ -15,4 +15,6 @@ int gettimeofday(struct timeval *tv, struct timezone *tz);
 
 int setenv(const char *name, const char *value, int overwrite);
 
+int unsetenv(const char *name);
+
 #endif // UTIL_H
