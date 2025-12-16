@@ -50,12 +50,13 @@
 # include <gps.h>
 #else
     struct gps_fix_t {
-	double time;
+	timespec time;
 	double latitude;
 	double longitude;
 	double altitude;
 	double speed;
 	double track;
+	int status;
     };
     struct gps_data_t {
 	uint32_t set;
@@ -67,7 +68,6 @@
 #define STATUS_SET      0x00000100u
 #define SATELLITE_SET   0x00010000u
 	gps_fix_t fix;
-	int    status; 
 	int satellites_used;
     };
 #endif
