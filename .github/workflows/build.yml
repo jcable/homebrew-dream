@@ -100,7 +100,7 @@ jobs:
   build-everything-else:
     runs-on: ${{ matrix.os }}
     strategy:
-      matrix
+      matrix:
         os: [ubuntu-latest]
 
     steps:
