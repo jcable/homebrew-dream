@@ -385,7 +385,11 @@ CPacketSocketNative::pollStream()
 {
     vector < _BYTE > vecbydata(MAX_SIZE_BYTES_NETW_BUF);
     /* Read block from network interface */
+#ifdef _WIN32
+    int iNumBytesRead = ::recv(s, (char *) &vecbydata[0], MAX_SIZE_BYTES_NETW_BUF);
+#else
     int iNumBytesRead = ::recv(s, (char *) &vecbydata[0], MAX_SIZE_BYTES_NETW_BUF, MSG_DONTWAIT);
+#endif
     if (iNumBytesRead > 0)
     {
         /* Decode the incoming packet */
