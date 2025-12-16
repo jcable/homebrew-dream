@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
     env:
       USERNAME: jcable
-      VCPKG_EXE: ${{ github.workspace }}/vcpkg/vcpkg
+      VCPKG_EXE: C:/vcpkg/vcpkg
       FEED_URL: https://nuget.pkg.github.com/jcable/index.json
       VCPKG_BINARY_SOURCES: "clear;nuget,https://nuget.pkg.github.com/jcable/index.json,readwrite"
     
