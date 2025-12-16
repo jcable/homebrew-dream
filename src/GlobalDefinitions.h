@@ -48,10 +48,7 @@
 
 /* set sensible defaults for QT */
 #ifdef QT_CORE_LIB
-#include <qglobal.h>
-#if QT_VERSION < 0x040600
-#error Qt version too old, need at least Qt 4.6
-#endif
+# include <qglobal.h>
 #else
 #define qDebug(...) \
     do              \
@@ -100,28 +97,7 @@ typedef unsigned char _BYTE;
 // bool seems not to work with linux TODO: Fix Me!
 typedef unsigned char /*bool*/ _BINARY;
 
-#if HAVE_STDINT_H
 #include <stdint.h>
-#elif HAVE_INTTYPES_H
-#include <inttypes.h>
-#else
-typedef signed char int8_t;
-typedef unsigned char uint8_t;
-#ifndef _INT16_T
-typedef signed int int16_t;
-#endif
-#ifndef _UINT16_T
-typedef unsigned int uint16_t;
-#endif
-#ifndef _INT32_T
-typedef signed long int32_t;
-#endif
-#ifndef _UINT32_T
-typedef unsigned long uint32_t;
-#endif
-typedef signed long long int64_t;
-typedef unsigned long long uint64_t;
-#endif
 
 /* Define type-specific information */
 #define SIZEOF__BYTE 8
