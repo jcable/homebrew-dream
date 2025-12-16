@@ -74,13 +74,14 @@ jobs:
     - name: Move library files where dream.pro expects
       shell: bash
       run: |
+        ls $VCPKG_DEFAULT_BINARY_CACHE
         mkdir -p include/qwt
         mkdir lib
-        cp ./buaabyl-qwt_windows-d0644a6/src/*.h include/qwt
-        cp ./qt-5.12.4-msvc2017_amd64/* lib
-        cp -r $VCPKG_ROOT/installed/x64-windows/include/* include
+        cp buaabyl-qwt_windows-d0644a6/src/*.h include/qwt
+        cp qt-5.12.4-msvc2017_amd64/* lib
+        cp -r $VCPKG_DEFAULT_BINARY_CACHE/installed/x64-windows/include/* include
         cp -r hamlib-w64-4.6.5/include/* include
-        cp -r $VCPKG_ROOT/installed/x64-windows/lib lib
+        cp -r $VCPKG_DEFAULT_BINARY_CACHE/installed/x64-windows/lib lib
         cp hamlib-w64-4.6.5/lib/msvc/* lib
 
     - name: Configure build
