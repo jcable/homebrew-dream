@@ -29,7 +29,7 @@ jobs:
 
     - name: Bootstrap vcpkg
       shell: pwsh
-      run: ${{ github.workspace }}/vcpkg/bootstrap-vcpkg.bat
+      run: C:/vcpkg/bootstrap-vcpkg.bat
 
     - name: Install python
       uses: actions/setup-python@v6
