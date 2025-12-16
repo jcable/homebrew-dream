@@ -85,6 +85,6 @@ int setenv(const char *name, const char *value, int overwrite)
 
 int unsetenv(const char *name)
 {
-    return SetEnvironmentVariable(TEXT(name), NULL);
+    return SetEnvironmentVariable(name, NULL);
 }
 
