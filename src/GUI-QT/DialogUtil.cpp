@@ -78,9 +78,10 @@
  * You can add it regenerate the lib file and it's supposed to work,
  * but for now the version string is disabled for windows.
 #ifndef _W IN32
-# include <fftw3.h>
 #endif
 */
+#include <fftw3.h>
+
 QString VersionString(QWidget* parent)
 {
     QString strVersionText;
