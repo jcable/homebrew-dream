@@ -2,7 +2,9 @@
 #define PACER_H_INCLUDED
 
 #include "../GlobalDefinitions.h"
-
+#ifdef _WIN32
+# include <minwinbase.h>
+#endif
 class CPacer
 {
 public:
@@ -13,7 +15,7 @@ public:
 protected:
 	uint64_t timekeeper;
 	uint64_t interval;
-#ifdef MSC_VER
+#ifdef _WIN32
 	HANDLE hTimer;
 #endif
 };

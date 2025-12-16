@@ -206,7 +206,7 @@ CAboutDlg::CAboutDlg(QWidget* parent):
 #ifdef QT_MULTIMEDIA_LIB
 		"<li><b>Qt Multimedia</b>(" + QString(QT_VERSION_STR) + ") <i>http://qt-project.org</i></li>"
 #else
-# ifdef MSC_VER
+# ifdef _WIN32
 		"<li><b>Windows Waveform Audio</b>(WinMM) <i>https://docs.microsoft.com</i></li>"
 # endif
 #endif
@@ -394,7 +394,7 @@ void CSysTray::SetToolTip(CSysTray* pSysTray, const QString& Title, const QStrin
         pSysTray->Title = Title;
         pSysTray->Message = Message;
         QString ToolTip;
-#ifdef MSC_VER
+#ifdef _WIN32
         ToolTip = Title;
         if (!Message.isEmpty())
         {

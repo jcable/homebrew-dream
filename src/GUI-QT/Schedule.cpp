@@ -36,7 +36,7 @@
 #include <QMessageBox>
 #include <QFileInfo>
 #include <ctime>
-#ifdef MSC_VER
+#ifdef _WIN32
 #include "../windows/platform_util.h"
 #endif
 #ifdef __ANDROID_API__

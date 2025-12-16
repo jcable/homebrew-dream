@@ -76,7 +76,7 @@ main(int argc, char **argv)
 	/* find plugins on MacOs when deployed in a bundle */
 	app.addLibraryPath(app.applicationDirPath()+"../PlugIns");
 #endif
-#ifdef MSC_VER
+#ifdef _WIN32
 	/* Initialize Winsock */
 	WSADATA wsaData;
 	(void)WSAStartup(MAKEWORD(2,2), &wsaData);

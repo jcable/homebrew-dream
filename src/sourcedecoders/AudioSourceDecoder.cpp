@@ -32,7 +32,7 @@
 #include <string>
 #include <algorithm>
 #include <cmath>
-#ifdef MSC_VER
+#ifdef _WIN32
 # include <direct.h>
 #else
 # include <sys/stat.h>

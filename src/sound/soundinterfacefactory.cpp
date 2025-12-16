@@ -28,7 +28,7 @@
  *
 \******************************************************************************/
 
-#ifdef MSC_VER
+#ifdef _WIN32
 /* mmsystem sound interface */
 # include "../windows/Sound.h"
 #else
@@ -84,7 +84,7 @@ CSoundInInterface * CSoundInterfaceFactory::CreateSoundInInterface()
 
 #if defined(USE_SOAPYSDR)
     return new CSoapySDRIn();
-#elif defined(MSC_VER) /* mmsystem sound interface */
+#elif defined(_WIN32) /* mmsystem sound interface */
     return new CSoundInMMSystem();
 #elif defined(USE_ALSA)
     return new CSoundInAlsa();
@@ -107,7 +107,7 @@ CSoundInInterface * CSoundInterfaceFactory::CreateSoundInInterface()
 
 CSoundOutInterface * CSoundInterfaceFactory::CreateSoundOutInterface()
 {
-#if defined(MSC_VER) /* mmsystem sound interface */
+#if defined(_WIN32) /* mmsystem sound interface */
     return new CSoundOutMMSystem();
 #elif defined(USE_ALSA)
     return new CSoundOutAlsa();

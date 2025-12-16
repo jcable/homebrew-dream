@@ -53,7 +53,7 @@
 int
 main(int argc, char **argv)
 {
-#ifdef MSC_VER
+#ifdef _WIN32
     WSADATA wsaData;
     (void)WSAStartup(MAKEWORD(2,2), &wsaData);
 #endif

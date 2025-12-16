@@ -94,7 +94,7 @@ CPacketSocketNative::SendPacket(const vector < _BYTE > &vecbydata, uint32_t, uin
         //cerr << "send packet " << ss << endl;
         int n = sendto(s, (char*)&vecbydata[0], vecbydata.size(), 0, (sockaddr*)&HostAddrOut, sizeof(HostAddrOut));
 		if(n==SOCKET_ERROR) {
-#ifdef MSC_VER
+#ifdef _WIN32
 			int err = GetLastError();
 			cerr << "socket send failed " << err << endl;
 #endif
@@ -356,7 +356,7 @@ CPacketSocketNative::SetOrigin(const string & strNewAddr)
             perror("bind() failed");
         }
     }
-#ifdef MSC_VER
+#ifdef _WIN32
     u_long mode = 1;
     (void)ioctlsocket(s, FIONBIO, &mode);
 #else

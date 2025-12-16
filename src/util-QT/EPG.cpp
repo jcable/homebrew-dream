@@ -1470,7 +1470,7 @@ time_t EPG::parseTime(const QString & time)
         return 0; // invalid
     QRegExp q("[-T:+Z]");
     QStringList sl = time.split(q);
-#ifdef MSC_VER
+#ifdef _WIN32
     SYSTEMTIME st;
     st.wYear = 1970;
     st.wMonth = 1;
