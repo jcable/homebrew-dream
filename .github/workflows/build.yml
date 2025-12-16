@@ -60,7 +60,6 @@ jobs:
       with:
         repository: 'buaabyl/qwt_windows'
         tag: 'qtcreator-4.9-plugins'
-        fileName: 'qtcreator-4.9-plugins.zip'
         extract: true
 
     - name: Download qwt bin
