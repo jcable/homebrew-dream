@@ -29,7 +29,7 @@
 #ifndef _LIBRARYLOADER_H_
 #define _LIBRARYLOADER_H_
 
-#ifdef _WIN32
+#ifdef _MSC_VER
 # include <windows.h>
 # define LOADLIB(a) (void*)LoadLibraryA(a)
 # define GETPROC(a, b) (void*)GetProcAddress((HMODULE)a, b)

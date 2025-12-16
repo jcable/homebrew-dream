@@ -36,7 +36,7 @@
 #include <QMessageBox>
 #include <QFileInfo>
 #include <ctime>
-#ifdef _WIN32
+#ifdef MSC_VER
 #include "../windows/platform_util.h"
 #endif
 #ifdef __ANDROID_API__
@@ -484,10 +484,6 @@ Station::EState CStationsItem::stateAt(time_t ltime, int previewSeconds) const
 		return Station::IS_INACTIVE;
 	}
 }
-
-#ifdef _WIN32
-extern time_t timegm(struct tm *tm); // defined in Scheduler.cpp
-#endif
 
 bool CStationsItem::activeAt(time_t wantedTime) const
 {

@@ -28,9 +28,7 @@
  *
 \******************************************************************************/
 
-#ifdef _WIN32
-# include <windows.h>
-#endif
+
 #if defined(__unix__) && !defined(__APPLE__)
 # include <csignal>
 #endif
@@ -55,7 +53,7 @@
 int
 main(int argc, char **argv)
 {
-#ifdef _WIN32
+#ifdef MSC_VER
     WSADATA wsaData;
     (void)WSAStartup(MAKEWORD(2,2), &wsaData);
 #endif

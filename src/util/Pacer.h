@@ -3,14 +3,6 @@
 
 #include "../GlobalDefinitions.h"
 
-#ifdef _WIN32
-# ifdef _WIN32_WINNT
-#  undef _WIN32_WINNT
-# endif
-# define _WIN32_WINNT _WIN32_WINNT_WINXP
-# include <windows.h>
-#endif
-
 class CPacer
 {
 public:
@@ -21,7 +13,7 @@ public:
 protected:
 	uint64_t timekeeper;
 	uint64_t interval;
-#ifdef _WIN32
+#ifdef MSC_VER
 	HANDLE hTimer;
 #endif
 };

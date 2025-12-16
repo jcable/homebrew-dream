@@ -26,7 +26,7 @@
 \******************************************************************************/
 
 #include "Journaline.h"
-#ifdef WIN32
+#ifdef MSC_VER
 # include <winsock2.h>
 #else
 # include <netinet/in.h>

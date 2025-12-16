@@ -37,24 +37,13 @@
 #include <sstream>
 
 #include <errno.h>
-#ifndef _WIN32
 # include <netinet/in.h>
 # include <arpa/inet.h>
-#endif
-
-#ifdef _WIN32
-/* Always include winsock2.h before windows.h */
-# include <winsock2.h>
-# include <ws2tcpip.h>
-# include <windows.h>
-#endif
 
 /* Some defines needed for compatibility when using Linux */
-#ifndef _WIN32
 typedef int SOCKET;
 # define SOCKET_ERROR				(-1)
 # define INVALID_SOCKET				(-1)
-#endif
 
 CPacketSocketQT::CPacketSocketQT():
     pPacketSink(NULL), HostAddrOut(), iHostPortOut(-1),

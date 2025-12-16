@@ -31,11 +31,8 @@
 #include <sstream>
 #include <cstdlib>
 #include <ctime>
-#ifdef _WIN32
-# include <windows.h>
-#endif
 
-#ifdef _WIN32
+#ifdef MSC_VER
 # include "windows/platform_util.h"
 #endif
 #ifdef __ANDROID_API__

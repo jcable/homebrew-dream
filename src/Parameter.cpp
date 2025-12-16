@@ -34,14 +34,7 @@
 #include <iomanip>
 //#include "util/LogPrint.h"
 
-#ifdef _WIN32
-# define PATH_SEPARATOR "\\"
-# define PATH_SEPARATORS "/\\"
-#else
-# define PATH_SEPARATOR "/"
-# define PATH_SEPARATORS "/"
-#endif
-#define DEFAULT_DATA_FILES_DIRECTORY "data" PATH_SEPARATOR
+#define DEFAULT_DATA_FILES_DIRECTORY "data/"
 
 /* Implementation *************************************************************/
 CParameter::CParameter():
@@ -942,15 +935,15 @@ void CParameter::SetServiceID(const int iShortID, const uint32_t iNewServiceID)
 string CParameter::GetDataDirectory(const char* pcChildDirectory) const
 {
     string sDirectory(sDataFilesDirectory);
-    size_t p = sDirectory.find_last_of(PATH_SEPARATORS);
+    size_t p = sDirectory.find_last_of("/");
     if (sDirectory != "" && (p == string::npos || p != (sDirectory.size()-1)))
-        sDirectory += PATH_SEPARATOR;
+        sDirectory += "/";
     if (pcChildDirectory != nullptr)
     {
         sDirectory += pcChildDirectory;
-        size_t p = sDirectory.find_last_of(PATH_SEPARATORS);
+        size_t p = sDirectory.find_last_of("/");
         if (sDirectory != "" && (p == string::npos || p != (sDirectory.size()-1)))
-            sDirectory += PATH_SEPARATOR;
+            sDirectory += "/";
     }
     if (sDirectory == "")
         sDirectory = DEFAULT_DATA_FILES_DIRECTORY;
@@ -1134,11 +1127,7 @@ void CParameter::GenerateRandomSerialNumber()
     char serialNumTemp[7];
 
     for (size_t i=0; i < 6; i++)
-#ifdef _WIN32
-        serialNumTemp[i] = randomChars[(int) 35.0*rand()/RAND_MAX]; /* integer overflow on linux, RAND_MAX=0x7FFFFFFF */
-#else
         serialNumTemp[i] = randomChars[35ll * (long long)rand() / RAND_MAX];
-#endif
 
     serialNumTemp[6] = '\0';
 

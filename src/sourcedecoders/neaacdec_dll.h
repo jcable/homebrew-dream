@@ -1,22 +1,11 @@
 #ifndef __NEAACDEC_DLL_H
 #define __NEAACDEC_DLL_H
 
-#ifdef _WIN32
-# include <windows.h>
-# pragma pack(push, 8)
-# ifndef NEAACDECAPI
-#  ifdef _MSC_VER
-#    define NEAACDECAPI
-#  else
-#   define NEAACDECAPI __cdecl
-#  endif
-# endif
-#else
 # include <dlfcn.h>
 # ifndef NEAACDECAPI
 #  define NEAACDECAPI
 # endif
-#endif
+
 #define DRMCH_MONO          1
 #define DRMCH_STEREO        2
 #define DRMCH_SBR_MONO      3

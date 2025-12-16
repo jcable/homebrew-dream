@@ -29,12 +29,8 @@
 #ifndef PACKET_SOCKET_H_INCLUDED
 #define PACKET_SOCKET_H_INCLUDED
 
-#ifdef _WIN32
-# include <winsock2.h>
-#else
-  typedef int SOCKET;
-# include <netinet/in.h>
-#endif
+typedef int SOCKET;
+#include <netinet/in.h>
 
 
 /* Maximum number of bytes received from the network interface. Maximum data

@@ -156,8 +156,7 @@ CHamlib::GetPortList(map < string, string > &ports)
 /* Port for use with 'NET rigctl' */
 	ports["localhost:4532"] = "localhost:4532";
 /* Config string for com-port selection is different in Windows and Linux */
-#ifdef _WIN32
-# ifdef HAVE_SETUPAPI
+#ifdef HAVE_SETUPAPI
 	GUID guid = GUID_DEVINTERFACE_COMPORT;
 	HDEVINFO hDevInfoSet = SetupDiGetClassDevs(&guid, nullptr, nullptr,
 											   DIGCF_PRESENT |
@@ -200,15 +199,7 @@ CHamlib::GetPortList(map < string, string > &ports)
 		SetupDiDestroyDeviceInfoList(hDevInfoSet);
 	}
 # endif
-	if (ports.empty())
-	{
-		ports["COM1"] = "COM1";
-		ports["COM2"] = "COM2";
-		ports["COM3"] = "COM3 ";
-		ports["COM4"] = "COM4 ";
-		ports["COM5"] = "COM5 ";
-	}
-#elif defined(__APPLE__)
+#if defined(__APPLE__)
     io_iterator_t serialPortIterator;
     kern_return_t			kernResult;
     CFMutableDictionaryRef	classesToMatch;
@@ -279,7 +270,7 @@ CHamlib::GetPortList(map < string, string > &ports)
 
 		(void) IOObjectRelease(modemService);
     }
-#elif defined(__unix__)
+#if defined(__unix__)
 	bool bOK = false;
 	FILE *p = popen("hal-find-by-capability --capability serial", "r");
 	if (p != nullptr)
@@ -373,8 +364,7 @@ CHamlib::LoadSettings(CSettings & s)
 			kwd = "if_path";
 			val = "/tmp/g313";
 			s.Put("Hamlib", kwd, val);
-#endif
-#ifdef _WIN32
+#else
 			kwd = "wodeviceid";
 			val = "-2";
 #endif

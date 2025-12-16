@@ -187,12 +187,7 @@ CSettings::IsReceiver(const char *argv0)
 	   appended to the symbolic link name */
 # define _xstr(s) _str(s)
 # define _str(s) #s
-# ifndef _WIN32
-	const int pathseparator = '/';
-# else
-	const int pathseparator = '\\';
-# endif
-	const char *str = strrchr(argv0, pathseparator);
+	const char *str = strrchr(argv0, '/');
 	return strcmp(str ? str+1 : argv0, _xstr(EXECUTABLE_NAME) "t") != 0;
 #else
 	(void)argv0;
@@ -918,9 +913,5 @@ CIniFile::SaveIni(ostream& file) const
 bool
 StlIniCompareStringNoCase::operator() (const string & x, const string & y) const
 {
-#ifdef _WIN32
-	return (_stricmp(x.c_str(), y.c_str()) < 0) ? true : false;
-#else
 	return (strcasecmp(x.c_str(), y.c_str()) < 0) ? true : false;
-#endif /* strcasecmp */
 }

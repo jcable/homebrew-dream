@@ -28,7 +28,7 @@
  *
 \******************************************************************************/
 
-#if defined(WIN32) && !defined(USE_PORTAUDIO) && !defined(USE_JACK) && !defined(QT_MULTIMEDIA_LIB)
+#ifdef MSC_VER
 /* mmsystem sound interface */
 # include "../windows/Sound.h"
 #else
@@ -84,8 +84,7 @@ CSoundInInterface * CSoundInterfaceFactory::CreateSoundInInterface()
 
 #if defined(USE_SOAPYSDR)
     return new CSoapySDRIn();
-#elif defined(WIN32) && !defined(USE_PORTAUDIO) && !defined(USE_JACK) && !defined(QT_MULTIMEDIA_LIB)
-/* mmsystem sound interface */
+#elif defined(MSC_VER) /* mmsystem sound interface */
     return new CSoundInMMSystem();
 #elif defined(USE_ALSA)
     return new CSoundInAlsa();
@@ -108,8 +107,7 @@ CSoundInInterface * CSoundInterfaceFactory::CreateSoundInInterface()
 
 CSoundOutInterface * CSoundInterfaceFactory::CreateSoundOutInterface()
 {
-#if defined(WIN32) && !defined(USE_PORTAUDIO) && !defined(USE_JACK) && !defined(QT_MULTIMEDIA_LIB)
-/* mmsystem sound interface */
+#if defined(MSC_VER) /* mmsystem sound interface */
     return new CSoundOutMMSystem();
 #elif defined(USE_ALSA)
     return new CSoundOutAlsa();

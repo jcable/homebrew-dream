@@ -39,7 +39,7 @@
 #define DRM_SCHEDULE_URL	"http://www.baseportal.com/cgi-bin/baseportal.pl?htx=/drmdx/scheduleini2"
 
 /* File handle type */
-#ifdef _WIN32
+#ifdef MSC_VER
 # define FILE_HANDLE					HANDLE
 #else
 # define FILE_HANDLE					int

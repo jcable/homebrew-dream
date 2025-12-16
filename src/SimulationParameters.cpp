@@ -27,15 +27,7 @@
 \******************************************************************************/
 
 #include "DrmSimulation.h"
-
-#ifdef _WIN32
-#include <windows.h>
-#else
-# ifdef HAVE_UNISTD_H
-#  include <unistd.h>
-# endif
-#endif
-
+#include <unistd.h>
 
 /* Simulation --------------------------------------------------------------- */
 void CGenSimData::ProcessDataInternal(CParameter& TransmParam)

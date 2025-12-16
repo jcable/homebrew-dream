@@ -123,9 +123,6 @@ void MultSettingsDlg::OnbuttonChooseDir()
 	/* Check if user not hit the cancel button */
 	if (!strFilename.isEmpty())
 	{
-#ifdef _WIN32
-		strFilename.replace(QRegExp("/"), "\\");
-#endif
 		Parameters.SetDataDirectory(string(strFilename.toUtf8().constData()));
 		SetDataDirectoryControls();
 	}
@@ -146,14 +143,7 @@ void MultSettingsDlg::OnbuttonClearCacheEPG()
 void MultSettingsDlg::SetDataDirectoryControls()
 {
 	QString strFilename(QString::fromUtf8(Parameters.GetDataDirectory().c_str()));
-#undef PATH_SEP
-#ifdef _WIN32
-	strFilename.replace(QRegExp("/"), "\\");
-# define PATH_SEP '\\'
-#else
-# define PATH_SEP '/'
-#endif
-	if (!strFilename.isEmpty() && strFilename.at(strFilename.length()-1) == QChar(PATH_SEP))
+	if (!strFilename.isEmpty() && strFilename.at(strFilename.length()-1) == QChar('/'))
 		strFilename.remove(strFilename.length()-1, 1);
 	TextLabelDir->setToolTip(strFilename);
 	TextLabelDir->setText(strFilename);

@@ -27,9 +27,6 @@
 \******************************************************************************/
 
 #include "audiofilein.h"
-#ifdef _WIN32
-# include <windows.h>
-#endif
 #include <iostream>
 #ifdef HAVE_LIBSNDFILE
 # include <sndfile.h>

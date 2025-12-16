@@ -239,22 +239,13 @@ void CTagItemDecoderRgps::DecodeTag(CVector<_BINARY>& vecbiTag, const int iLen)
         char *e = getenv("TZ");
         if(e)
             se = e;
-#ifdef _WIN32
-        _putenv("TZ=UTC");
-        _tzset();
-        time_t t = mktime(&tm);
-        stringstream ss("TZ=");
-        ss << se;
-        _putenv(ss.str().c_str());
-#else
-        putenv(const_cast<char*>("TZ=UTC"));
+       putenv(const_cast<char*>("TZ=UTC"));
         tzset();
         time_t t = mktime(&tm);
         if(e)
             setenv("TZ", se.c_str(), 1);
         else
             unsetenv("TZ");
-#endif
         gps_data.fix.time.tv_sec = t;
         gps_data.fix.time.tv_nsec = 0;
         gps_data.set |= TIME_SET;

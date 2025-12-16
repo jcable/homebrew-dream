@@ -1183,7 +1183,7 @@ void systemevalDlg::AddWhatsThisHelp()
                         "number of correct decoded MSC blocks are logged including some "
                         "additional information, e.g. the station label and bit-rate. The "
                         "log mechanism works only for audio services using AAC source coding. "
-#ifdef _WIN32
+#ifdef MSC_VER
                         "During the logging no Dream windows "
                         "should be moved or re-sized. This can lead to incorrect log files "
                         "(problem with QT timer implementation under Windows). This problem "

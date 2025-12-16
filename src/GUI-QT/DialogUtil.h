@@ -53,7 +53,7 @@ class CRig;
 /* Definitions ****************************************************************/
 
 /* Definition for Courier font */
-#ifdef _WIN32
+#ifdef MSC_VER
 # define FONT_COURIER    "Courier New"
 #elif defined(__linux__)
 # define FONT_COURIER    "Monospace"

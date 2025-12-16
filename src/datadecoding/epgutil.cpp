@@ -31,12 +31,8 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
-#ifdef _WIN32
-#include <io.h>
-#include <direct.h>
-#else
 #include <sys/stat.h>
-#endif
+
 using namespace std;
 
 void
@@ -54,13 +50,8 @@ mkdirs (const string & path)
 	      return;
 	  string dir = path.substr (p, q - p);
 	  left += sep + dir;
-#ifdef _WIN32
-	  sep = "\\";
-	  _mkdir (left.c_str ());
-#else
 	  sep = "/";
 	  mkdir (left.c_str (), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-#endif
 	  p = q + 1;
       }
 }

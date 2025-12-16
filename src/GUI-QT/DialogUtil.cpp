@@ -35,9 +35,6 @@
 #include <QFile>
 #include <QCoreApplication>
 #include <QWhatsThis>
-#ifdef _WIN32
-# include <winsock2.h>
-#endif
 #include "../Version.h"
 #include "../util-QT/Util.h"
 #include "DialogUtil.h"
@@ -79,11 +76,11 @@
 /* fftw 3.3.2 doesn't export the symbol fftw_version
  * for windows in libfftw3-3.def
  * You can add it regenerate the lib file and it's supposed to work,
- * but for now the version string is disabled for windows. */
-#ifndef _WIN32
+ * but for now the version string is disabled for windows.
+#ifndef _W IN32
 # include <fftw3.h>
 #endif
-
+*/
 QString VersionString(QWidget* parent)
 {
     QString strVersionText;
@@ -154,11 +151,7 @@ CAboutDlg::CAboutDlg(QWidget* parent):
         "<b>" + tr("This compilation of Dream uses the following libraries:") +
         "</b></p>"
         "<ul>"
-#ifndef _WIN32
         "<li><b>FFTW</b> (" + QString(fftw_version) + ") <i>http://www.fftw.org</i></li>"
-#else
-        "<li><b>FFTW</b> <i>http://www.fftw.org</i></li>"
-#endif
 #ifdef QT_CORE_LIB
         "<li><b>Qt</b> (" + QString(QT_VERSION_STR) + ") <i>http://qt-project.org</i></li>"
 #endif
@@ -212,7 +205,7 @@ CAboutDlg::CAboutDlg(QWidget* parent):
 #ifdef QT_MULTIMEDIA_LIB
 		"<li><b>Qt Multimedia</b>(" + QString(QT_VERSION_STR) + ") <i>http://qt-project.org</i></li>"
 #else
-# ifdef WIN32
+# ifdef MSC_VER
 		"<li><b>Windows Waveform Audio</b>(WinMM) <i>https://docs.microsoft.com</i></li>"
 # endif
 #endif
@@ -400,7 +393,7 @@ void CSysTray::SetToolTip(CSysTray* pSysTray, const QString& Title, const QStrin
         pSysTray->Title = Title;
         pSysTray->Message = Message;
         QString ToolTip;
-#ifdef _WIN32
+#ifdef MSC_VER
         ToolTip = Title;
         if (!Message.isEmpty())
         {

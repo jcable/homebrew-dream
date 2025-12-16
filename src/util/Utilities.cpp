@@ -28,7 +28,7 @@
 #include "Utilities.h"
 #include <sstream>
 #include <cstring>
-#if defined(_WIN32)
+#if defined(MSC_VER)
 # ifdef HAVE_SETUPAPI
 #  ifndef INITGUID
 #   define INITGUID 1

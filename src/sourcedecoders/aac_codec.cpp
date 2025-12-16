@@ -45,7 +45,7 @@ static const LIBFUNC FaadLibFuncs[] = {
     { "NeAACDecDecode",  (void**)&NeAACDecDecode,  (void*)nullptr },
     { nullptr, nullptr, nullptr }
 };
-# if defined(_WIN32)
+# if defined(MSC_VER)
 static const char* FaadLibNames[] = { "faad2_drm.dll", "libfaad2_drm.dll", "faad_drm.dll", "libfaad2.dll", nullptr };
 # elif defined(__APPLE__)
 static const char* FaadLibNames[] = { "libfaad_drm.dylib", nullptr };

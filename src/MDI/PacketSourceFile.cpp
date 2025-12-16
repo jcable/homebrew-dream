@@ -33,20 +33,12 @@
 #include <cstdlib>
 #include <cerrno>
 
-#ifdef _WIN32
-/* Always include winsock2.h before windows.h */
-/* winsock2.h is already included into libpcap */
-# include <winsock2.h>
-# include <ws2tcpip.h>
-# include <windows.h>
-#else
 # include <netinet/in.h>
 # include <arpa/inet.h>
 /* Some defines needed for compatibility when using Linux, Darwin, ... */
 typedef int SOCKET;
 # define SOCKET_ERROR				(-1)
 # define INVALID_SOCKET				(-1)
-#endif
 
 #include "../util/Pacer.h"
 

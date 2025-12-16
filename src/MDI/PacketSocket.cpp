@@ -43,17 +43,6 @@ if I run it with the command:
 #include <cstring>
 #include <stdlib.h> /* for atol() */
 
-#ifdef _WIN32
-/* Always include winsock2.h before windows.h */
-# include <ws2tcpip.h>
-# include <windows.h>
-inline int inet_aton(const char*s, void * a) {
-    ((in_addr*)a)->s_addr = inet_addr(s);
-    return 1;
-}
-# define inet_pton(a, b, c) inet_aton(b, c)
-# define inet_ntop(a, b, c, d) inet_ntoa(*(in_addr*)b)
-#else
 # include <arpa/inet.h>
 # include <sys/types.h>
 # include <sys/socket.h>
@@ -61,7 +50,6 @@ inline int inet_aton(const char*s, void * a) {
 # include <fcntl.h>
 # define SOCKET_ERROR				(-1)
 # define INVALID_SOCKET				(-1)
-#endif
 
 using namespace std;
 
@@ -106,7 +94,7 @@ CPacketSocketNative::SendPacket(const vector < _BYTE > &vecbydata, uint32_t, uin
         //cerr << "send packet " << ss << endl;
         int n = sendto(s, (char*)&vecbydata[0], vecbydata.size(), 0, (sockaddr*)&HostAddrOut, sizeof(HostAddrOut));
 		if(n==SOCKET_ERROR) {
-#ifdef _WIN32
+#ifdef MSC_VER
 			int err = GetLastError();
 			cerr << "socket send failed " << err << endl;
 #endif
@@ -368,7 +356,7 @@ CPacketSocketNative::SetOrigin(const string & strNewAddr)
             perror("bind() failed");
         }
     }
-#ifdef _WIN32
+#ifdef MSC_VER
     u_long mode = 1;
     (void)ioctlsocket(s, FIONBIO, &mode);
 #else

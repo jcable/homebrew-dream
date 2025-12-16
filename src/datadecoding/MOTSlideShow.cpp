@@ -66,46 +66,18 @@ CMOTSlideShowEncoder::TransformFilename(string strFileName)
     if (bRemovePath)
     {
         /* Keep only the filename */
-#ifdef _WIN32
-        const size_t pos = strFileName.rfind('\\');
-#else
         const size_t pos = strFileName.rfind('/');
-#endif
         if (pos != string::npos)
             strFileName.erase(0, pos + 1);
     }
     else
     {
-#ifdef _WIN32
-        /* Remove the C:\ if any */
-        if (strFileName.length() >= 2)
-        {
-            if (strFileName[1] == ':' &&
-                ((strFileName[0]>='A' && strFileName[0]<='Z') ||
-                 (strFileName[0]>='a' && strFileName[0]<='z')))
-            {  
-                strFileName.erase(0, 2);
-                /* Remove the first '\' if any */
-                if (strFileName.length() >= 1)
-                {
-                    if (strFileName[0] == '\\')
-                        strFileName.erase(0, 1);
-                }
-            }
-        }
-        /* Replace all '\' by '/' */
-        const int len = strFileName.length();
-        for (int i = 0; i < len; i++)
-            if (strFileName[i] == '\\')
-                strFileName[i] = '/';
-#else
         /* Remove the first '/' if any */
         if (strFileName.length() >= 1)
         {
             if (strFileName[0] == '/')
                 strFileName.erase(0, 1);
         }
-#endif
     }
     return strFileName;
 }

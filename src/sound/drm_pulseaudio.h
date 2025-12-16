@@ -44,11 +44,6 @@
 # include "../matlib/MatlibSigProToolbox.h"
 #endif
 
-#ifndef _WIN32
-# define ENABLE_STDIN_STDOUT
-#endif
-
-
 class CSoundOutPulse;
 typedef struct pa_stream_notify_cb_userdata_t
 {

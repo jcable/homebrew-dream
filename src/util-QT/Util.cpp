@@ -39,10 +39,6 @@
 QString VerifyFilename(QString filename)
 {
     filename.replace(QRegExp("/"), "_"); /* replace unix-like path separator with '_' */
-#ifdef _WIN32
-    filename.replace(QRegExp("\\\\"), "_"); /* replace windows path separator with '_' */
-    filename.replace(QRegExp(":"), "_"); /* replace ':' with '_' */
-#endif
     return filename;
 }
 
@@ -51,10 +47,6 @@ QString VerifyHtmlPath(QString path)
 {
     if (path == "..")
         return "_";
-#ifdef _WIN32
-    path.replace(QRegExp("\\\\"), "_"); /* replace windows path separator with '_' */
-    path.replace(QRegExp(":"), "_"); /* replace ':' with '_' */
-#endif
     path.replace(QRegExp("^\\.\\./"), "_/"); /* replace '../' at the beginning with '_/' */
     path.replace(QRegExp("/\\.\\.$"), "/_"); /* replace '/..' at the end with '/_' */
     path.replace(QRegExp("/\\.\\./"), "/_/"); /* replace '/../' with '/_/' */
@@ -171,13 +163,7 @@ void CreateDirectories(const QString& strFilename)
     */
     for (int i = 0;; i++)
     {
-#ifdef _WIN32
-        int i1 = strFilename.indexOf(QChar('/'), i);
-        int i2 = strFilename.indexOf(QChar('\\'), i);
-        i = (i1 >= 0 && ((i1 < i2) || (i2<0))) ? i1 : i2;
-#else
         i = strFilename.indexOf(QChar('/'), i);
-#endif
         if (i < 0)
             break;
         const QString strDirName = strFilename.left(i);
