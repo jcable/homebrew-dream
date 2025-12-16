@@ -3,7 +3,7 @@
 
 #include "../GlobalDefinitions.h"
 #ifdef _WIN32
-# include <minwinbase.h>
+# include <windows.h>
 #endif
 class CPacer
 {
