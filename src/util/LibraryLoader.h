@@ -29,17 +29,10 @@
 #ifndef _LIBRARYLOADER_H_
 #define _LIBRARYLOADER_H_
 
-#ifdef _MSC_VER
-# include <windows.h>
-# define LOADLIB(a) (void*)LoadLibraryA(a)
-# define GETPROC(a, b) (void*)GetProcAddress((HMODULE)a, b)
-# define FREELIB(a) FreeLibrary((HMODULE)a)
-#else
 # include <dlfcn.h>
 # define LOADLIB(a) dlopen(a, RTLD_LOCAL | RTLD_NOW)
 # define GETPROC(a, b) dlsym(a, b)
 # define FREELIB(a) dlclose(a)
-#endif
 
 typedef struct LIBFUNC
 {
