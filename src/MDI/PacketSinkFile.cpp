@@ -28,13 +28,16 @@
 \******************************************************************************/
 
 #include "PacketSinkFile.h"
-
+#ifdef _WIN32
+# include <winsock2.h>
+#else
 # include <netinet/in.h>
 # include <arpa/inet.h>
 /* Some defines needed for compatibility when using Linux, Darwin, ... */
 typedef int SOCKET;
 # define SOCKET_ERROR				(-1)
 # define INVALID_SOCKET				(-1)
+#endif
 
 
 #ifdef HAVE_LIBPCAP
