@@ -76,7 +76,7 @@ jobs:
       run: |
         ls $_VCPKG_
         ls
-        ls vcpkg
+        ls C:/vcpkg
         mkdir -p include/qwt
         mkdir lib
         cp buaabyl-qwt_windows-d0644a6/src/*.h include/qwt
