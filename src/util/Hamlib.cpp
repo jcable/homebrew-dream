@@ -270,6 +270,7 @@ CHamlib::GetPortList(map < string, string > &ports)
 
 		(void) IOObjectRelease(modemService);
     }
+#endif
 #if defined(__unix__)
 	bool bOK = false;
 	FILE *p = popen("hal-find-by-capability --capability serial", "r");
