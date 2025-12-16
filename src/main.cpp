@@ -27,6 +27,19 @@
 \******************************************************************************/
 
 #ifdef _WIN32
+
+// Source - https://stackoverflow.com/a/57958322
+// Posted by Kyrylo Cherneha
+// Retrieved 2025-12-16, License - CC BY-SA 4.0
+
+#pragma once
+
+#define _WIN32_WINNT 0x500
+
+#include <winsock2.h>
+#include <WS2tcpip.h>
+#pragma comment(lib, "WS2_32.Lib")
+
 # include <windows.h>
 #endif
 #if defined(__unix__) && !defined(__APPLE__)
