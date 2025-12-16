@@ -85,6 +85,6 @@ int setenv(const char *name, const char *value, int overwrite)
 
 int unsetenv(const char *name)
 {
-    return SetEnvironmentVariable(name, NULL);
+    return SetEnvironmentVariable(reinterpret_cast<LPCSTR>(name), NULL);
 }
 
