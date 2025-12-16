@@ -60,16 +60,12 @@
 **/
 
 
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define TIM_DEF
+#include <windows.h>
 #include <wtypes.h>
 #include <winsock2.h>
-#include <windows.h>
 #undef min
-
-#pragma warning(disable: 4100)
-#pragma warning(disable: 4786)
-
 #endif
 
 #include <algorithm>
