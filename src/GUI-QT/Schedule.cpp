@@ -491,8 +491,11 @@ bool CStationsItem::activeAt(time_t wantedTime) const
 	ptm.tm_hour = 0;
 	ptm.tm_min = 0;
 	ptm.tm_sec = 0;
+	#if defined(_WIN32) || defined(_MSC_VER)
+	time_t wantedDay = _mkgmtime(&ptm); // start of daytime
+	#else		
 	time_t wantedDay = timegm(&ptm); // start of daytime
-
+	#endif
 	/* Get start time */
 	time_t broadcastStart = wantedDay + 60*(60*iStartHour+iStartMinute);
 
