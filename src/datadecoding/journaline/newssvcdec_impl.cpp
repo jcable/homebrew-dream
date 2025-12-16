@@ -196,7 +196,7 @@ unsigned long NEWS_SVC_DEC_putData(
 
 	struct timeval reception_time;
 
-ifdef _WIN32
+#ifdef _WIN32
 	time((time_t *)&(reception_time.tv_sec));
 	reception_time.tv_usec=GetTickCount();
 #else
