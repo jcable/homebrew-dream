@@ -43,13 +43,20 @@ if I run it with the command:
 #include <cstring>
 #include <stdlib.h> /* for atol() */
 
+#ifdef _WIN32
+# include <winsock2.h>
+#else
+# include <netinet/in.h>
 # include <arpa/inet.h>
+/* Some defines needed for compatibility when using Linux, Darwin, ... */
+typedef int SOCKET;
+# define SOCKET_ERROR				(-1)
+# define INVALID_SOCKET				(-1)
+#endif
 # include <sys/types.h>
 # include <sys/socket.h>
 # include <unistd.h>
 # include <fcntl.h>
-# define SOCKET_ERROR				(-1)
-# define INVALID_SOCKET				(-1)
 
 using namespace std;
 
