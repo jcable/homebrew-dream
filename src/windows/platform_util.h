@@ -17,4 +17,7 @@ int setenv(const char *name, const char *value, int overwrite);
 
 int unsetenv(const char *name);
 
+#define strncasecmp _strnicmp
+#define strcasecmp _stricmp
+
 #endif // UTIL_H

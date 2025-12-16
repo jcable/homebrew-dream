@@ -44,7 +44,9 @@
 #include <cstdlib>
 using namespace std;
 #include "FileTyper.h"
-
+#ifdef _WIN32
+# include "../windows/platform_util.h"
+#endif
 /* Implementation *************************************************************/
 
 CIniFile::CIniFile()
