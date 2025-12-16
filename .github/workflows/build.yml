@@ -1,5 +1,8 @@
 name: Build
 
+permissions:
+  packages: write
+
 on:
   push:
     branches: [ main ]
@@ -10,15 +13,11 @@ jobs:
   build-windows:
     runs-on: windows-latest
     env:
-      # Indicates the location of the vcpkg as a Git submodule of the project repository.
-      # Not using "VCPKG_ROOT" because a variable with the same name is defined in the VS's
-      # Developer Command Prompt environment in VS 2022 17.6, which would override this one
-      # if it had the same name.
-      _VCPKG_: ${{ github.workspace }}/vcpkg
-      # Tells vcpkg where binary packages are stored.
-      VCPKG_DEFAULT_BINARY_CACHE: ${{ github.workspace }}/vcpkg/bincache
-      # Let's use GitHub Action cache as storage for the vcpkg Binary Caching feature.
-      VCPKG_BINARY_SOURCES: 'clear;x-gha,readwrite'
+      USERNAME: jcable
+      VCPKG_EXE: ${{ github.workspace }}/vcpkg/vcpkg
+      FEED_URL: https://nuget.pkg.github.com/jcable/index.json
+      VCPKG_BINARY_SOURCES: "clear;nuget,https://nuget.pkg.github.com/jcable/index.json,readwrite"
+    
     steps:
     # Set env vars needed for vcpkg to leverage the GitHub Action cache as a storage
     # for Binary Caching.
@@ -27,6 +26,10 @@ jobs:
         script: |
             core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
             core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
+    - name: Bootstrap vcpkg
+      shell: pwsh
+      run: ${{ github.workspace }}/vcpkg/bootstrap-vcpkg.bat
 
     - name: Install python
       uses: actions/setup-python@v6
@@ -42,6 +45,20 @@ jobs:
     # - name: Install qt with vcpkg # libsndfile fdk-aac opus speexdsp soapysdr qwt
     #   run: |
     #     vcpkg install qwt --triplet x64-windows
+
+    - name: Add NuGet sources
+      shell: pwsh
+      run: |
+        .$(${{ env.VCPKG_EXE }} fetch nuget) `
+          sources add `
+          -Source "${{ env.FEED_URL }}" `
+          -StorePasswordInClearText `
+          -Name GitHubPackages `
+          -UserName "${{ env.USERNAME }}" `
+          -Password "${{ secrets.GITHUB_TOKEN }}"
+        .$(${{ env.VCPKG_EXE }} fetch nuget) `
+          setapikey "${{ secrets.GITHUB_TOKEN }}" `
+          -Source "${{ env.FEED_URL }}"
 
     - name: Install dependencies with vcpkg
       run: |
