@@ -71,25 +71,24 @@ jobs:
         fileName: 'qt-5.12.4-msvc2017_amd64.zip'
         extract: true
 
-    - name: Move qwt files somewhere nicer
+    - name: Move library files where dream.pro expects
       shell: bash
       run: |
         mkdir -p include/qwt
         mkdir lib
         cp ./buaabyl-qwt_windows-d0644a6/src/*.h include/qwt
         cp ./qt-5.12.4-msvc2017_amd64/* lib
+        cp -r $VCPKG_ROOT/installed/x64-windows/include/* include
+        cp -r hamlib-w64-4.6.5/include/* include
+        cp -r $VCPKG_ROOT/installed/x64-windows/lib lib
+        cp hamlib-w64-4.6.5/lib/msvc/* lib
 
-    - name: Set environment for MSVC
-      run: |
-        echo "INCLUDE=$VCPKG_ROOT/installed/x64-windows/include;${{ github.workspace }}/hamlib-w64-4.6.5/include;${{ github.workspace }}/include/qwt;$INCLUDE" >> $GITHUB_ENV
-        echo "LIB=$VCPKG_ROOT/installed/x64-windows/lib;${{ github.workspace }}/hamlib-w64-4.6.5/lib/msvc;${{ github.workspace }}/lib;$LIB" >> $GITHUB_ENV
-
-    - uses: ilammy/msvc-dev-cmd@v1
+    - name: Configure build
+      run: qmake
 
     - name: Build
-      run: |
-        qmake
-        nmake
+      uses: ilammy/msvc-dev-cmd@v1
+      run: nmake
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
