@@ -39,7 +39,9 @@
 #include "../DrmReceiver.h"
 #include <time.h>
 #include <stdlib.h>
-
+#ifdef _WIN32
+#include "../windows/platform_util.h"
+#endif
 /* RX_STAT Items */
 
 _REAL CTagItemDecoderRSI::decodeDb(CVector<_BINARY>& vecbiTag)

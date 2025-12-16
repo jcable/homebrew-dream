@@ -13,4 +13,6 @@ struct timezone
 
 int gettimeofday(struct timeval *tv, struct timezone *tz);
 
+int setenv(const char *name, const char *value, int overwrite);
+
 #endif // UTIL_H
