@@ -26,8 +26,9 @@
  *
 \******************************************************************************/
 
-#include "DrmSimulation.h"
-#include <unistd.h>
+#i
+nclude "DrmSimulation.h"
+//#include <unistd.h>
 
 /* Simulation --------------------------------------------------------------- */
 void CGenSimData::ProcessDataInternal(CParameter& TransmParam)
