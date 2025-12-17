@@ -105,7 +105,7 @@ CSoundInMMSystem::~CSoundInMMSystem()
         CloseHandle(m_WaveEvent);
 }
 
-bool CSoundInMMSystem::Read(CVector<short>& psData)
+bool CSoundInMMSystem::Read(CVector<short>& psData, CParameter& Parameters)
 {
     int			i;
     bool	bError;
@@ -683,3 +683,4 @@ void CSoundOutMMSystem::Close()
     /* Set flag to open devices the next time it is initialized */
     bChangDev = true;
 }
+
