@@ -54,7 +54,7 @@ public:
     virtual ~CSoundInMMSystem();
 
     virtual bool Init(int iSampleRate, int iNewBufferSize, bool bNewBlocking);
-    virtual bool Read(CVector<short> &psData);
+    virtual bool Read(CVector<short> &psData, CParameter& Parameters);
     virtual void Enumerate(std::vector<std::string> &names, std::vector<std::string> &descriptions, std::string &defaultInput);
     virtual std::string GetDev();
     virtual void SetDev(std::string sNewDev);
