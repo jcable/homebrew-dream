@@ -34,15 +34,8 @@
 #include <QDir>
 #include <QTextStream>
 #include <QDateTime>
-#include <cstdlib>
-#include <sys/stat.h>
 
-#include <iomanip>
-#include <locale>
-#include <sstream>
-
-const
-EPG::genre_list[] = {
+static const struct gl { const char *genre; const char* desc; } genre_list[] = {
     {"1", "Audio-Video"},
     {"1.0", "Proprietary"},
     {"1.1", "PlayRecording"},
