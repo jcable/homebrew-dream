@@ -336,7 +336,7 @@ hamlib {
      macx:LIBS += -framework IOKit
      unix:LIBS += -lhamlib
      win32 {
-         LIBS += -llibhamlib-4
+         DEF_FILE = libhamlib-4.def
      }
      HEADERS += src/util/Hamlib.h
      SOURCES += src/util/Hamlib.cpp
