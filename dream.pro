@@ -271,7 +271,7 @@ win32:cross_compile {
 }
 win32 {
   CONFIG += fdk-aac
-  LIBS += -lwpcap -lpacket -lmincore
+  LIBS += -lwpcap -lpacket -lmincore -lzlib -lfftw3
   DEFINES += HAVE_SETUPAPI HAVE_LIBZ _CRT_SECURE_NO_WARNINGS HAVE_LIBZ HAVE_LIBPCAP
   SOURCES += src/windows/Pacer.cpp src/windows/platform_util.cpp
   HEADERS += src/windows/platform_util.h
@@ -286,43 +286,22 @@ win32 {
     message("with mmsystem")
 	CONFIG += sound
   }
-  win32-g++ {
-	DEFINES += HAVE_STDINT_H
-	LIBS += -lz -lfftw3
-  }
-  else {
-	DEFINES += NOMINMAX
+  DEFINES += NOMINMAX
 	QMAKE_LFLAGS_RELEASE += /NODEFAULTLIB:libcmt.lib
 	QMAKE_LFLAGS_DEBUG += /NODEFAULTLIB:libcmtd.lib
 	QMAKE_LFLAGS_DEBUG += /NODEFAULTLIB:libcmt.lib
-	LIBS += -lzlib -llibfftw3
-  }
-  mxe {
-    message('MXE')
-    !minimal:CONFIG += sndfile hamlib opus
-    minimal {
-        HEADERS += src/windows/Sound.h
-        SOURCES += src/windows/Sound.cpp
-        LIBS += -lwinmm
-    }
-    CONFIG += speexdsp sound
-    #!console:QT += multimedia
-  }
-  else {
-    exists($$PWD/include/speex/speex_preprocess.h) {
-      CONFIG += speexdsp
-    }
-    exists($$PWD/include/hamlib/rig.h) {
-      CONFIG += hamlib
-    }
-    exists($$PWD/include/sndfile.h) {
-        CONFIG += sndfile
-    }
-    exists($$PWD/include/opus/opus.h) {
-        CONFIG += opus
-    }
-
-  }
+	exists($$PWD/include/speex/speex_preprocess.h) {
+	  CONFIG += speexdsp
+	}
+	exists($$PWD/include/hamlib/rig.h) {
+	  CONFIG += hamlib
+	}
+	exists($$PWD/include/sndfile.h) {
+		CONFIG += sndfile
+	}
+	exists($$PWD/include/opus/opus.h) {
+		CONFIG += opus
+	}
 }
 fdk-aac {
      DEFINES += HAVE_LIBFDK_AAC HAVE_USAC
