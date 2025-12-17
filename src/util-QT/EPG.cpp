@@ -35,7 +35,7 @@
 #include <QTextStream>
 #include <QDateTime>
 
-const EPG::genre_list[] = {
+static const struct gl { const char *genre; const char* desc; } genre_list[] = {
     {"1", "Audio-Video"},
     {"1.0", "Proprietary"},
     {"1.1", "PlayRecording"},
