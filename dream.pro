@@ -262,20 +262,12 @@ unix:!cross_compile {
        CONFIG += soapysdr
     }
 }
-win32:cross_compile {
-  message(win32 cross compile)
-  CONFIG += mxe
-  target.path = $$absolute_path(../..)/usr/$$replace(QMAKE_CC,-gcc,)/bin
-  INSTALLS += target
-  message($$target.path)
-}
 win32 {
   CONFIG += fdk-aac
-  LIBS += -lwpcap -lpacket -lmincore -lzlib -lfftw3
+  LIBS += -lwpcap -lpacket -lmincore -lzlib -lfftw3 -lsetupapi
   DEFINES += HAVE_SETUPAPI HAVE_LIBZ _CRT_SECURE_NO_WARNINGS HAVE_LIBZ HAVE_LIBPCAP
   SOURCES += src/windows/Pacer.cpp src/windows/platform_util.cpp
   HEADERS += src/windows/platform_util.h
-  LIBS += -lsetupapi
   contains(QT,multimedia) {
 	CONFIG += sound
   }
@@ -287,21 +279,21 @@ win32 {
 	CONFIG += sound
   }
   DEFINES += NOMINMAX
-	QMAKE_LFLAGS_RELEASE += /NODEFAULTLIB:libcmt.lib
-	QMAKE_LFLAGS_DEBUG += /NODEFAULTLIB:libcmtd.lib
-	QMAKE_LFLAGS_DEBUG += /NODEFAULTLIB:libcmt.lib
-	exists($$PWD/include/speex/speex_preprocess.h) {
-	  CONFIG += speexdsp
-	}
-	exists($$PWD/include/hamlib/rig.h) {
-	  CONFIG += hamlib
-	}
-	exists($$PWD/include/sndfile.h) {
+  QMAKE_LFLAGS_RELEASE += /NODEFAULTLIB:libcmt.lib
+  QMAKE_LFLAGS_DEBUG += /NODEFAULTLIB:libcmtd.lib
+  QMAKE_LFLAGS_DEBUG += /NODEFAULTLIB:libcmt.lib
+  exists($$PWD/include/speex/speex_preprocess.h) {
+	CONFIG += speexdsp
+  }
+  exists($$PWD/include/hamlib/rig.h) {
+	CONFIG += hamlib
+  }
+  exists($$PWD/include/sndfile.h) {
 		CONFIG += sndfile
-	}
-	exists($$PWD/include/opus/opus.h) {
+  }
+  exists($$PWD/include/opus/opus.h) {
 		CONFIG += opus
-	}
+  }
 }
 fdk-aac {
      DEFINES += HAVE_LIBFDK_AAC HAVE_USAC
@@ -326,8 +318,7 @@ opus {
 sndfile {
      DEFINES += HAVE_LIBSNDFILE
      unix:LIBS += -lsndfile
-     win32:mxe:LIBS += -lsndfile -lvorbisenc -lvorbis -lFLAC -logg -lm
-     win32:!mxe:LIBS += -llibsndfile-1
+     win32:LIBS += -lsndfile -lvorbisenc -lvorbis -lFLAC -logg
      message("with libsndfile")
 }
 speexdsp {
@@ -345,12 +336,7 @@ hamlib {
      macx:LIBS += -framework IOKit
      unix:LIBS += -lhamlib
      win32 {
-       msvc* {
-         LIBS += -llibhamlib-2
-       }
-       else {
-         LIBS += -lhamlib -lusb-1.0
-       }
+         LIBS += -llibhamlib-4
      }
      HEADERS += src/util/Hamlib.h
      SOURCES += src/util/Hamlib.cpp
