@@ -104,7 +104,8 @@ jobs:
 
     - name: Build
       run: |
-        lib /def:lib/libhamlib-4.def /machine:x64 /out:lib/libhamlib-4.lib
+        lib /def:lib/libhamlib-4.def /machine:x64 /out:lib/libhamlib-4
+        dir lib
         qmake
         nmake
 
