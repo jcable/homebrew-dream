@@ -295,7 +295,7 @@ win32 {
 	QMAKE_LFLAGS_RELEASE += /NODEFAULTLIB:libcmt.lib
 	QMAKE_LFLAGS_DEBUG += /NODEFAULTLIB:libcmtd.lib
 	QMAKE_LFLAGS_DEBUG += /NODEFAULTLIB:libcmt.lib
-	LIBS += -lzlib -llibfftw3-3
+	LIBS += -lzlib -llibfftw3
   }
   mxe {
     message('MXE')
