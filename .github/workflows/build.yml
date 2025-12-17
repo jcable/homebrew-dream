@@ -99,12 +99,13 @@ jobs:
         cp -r hamlib-w64-4.6.5/include/* include
         cp -r C:/vcpkg/installed/x64-windows/lib/* lib
         cp hamlib-w64-4.6.5/lib/msvc/* lib
-        find lib
 
     - uses: ilammy/msvc-dev-cmd@v1
 
     - name: Build
       run: |
+        lib /def:lib/libhamlib-4.def /machine:x64 /out:lib/libhamlib-4.lib
+        find lib
         qmake
         nmake
 
