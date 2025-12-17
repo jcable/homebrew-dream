@@ -335,9 +335,7 @@ hamlib {
      DEFINES += HAVE_LIBHAMLIB
      macx:LIBS += -framework IOKit
      unix:LIBS += -lhamlib
-     win32 {
-         LIBS += -lhamlib-4
-     }
+     win32:LIBS += -lhamlib
      HEADERS += src/util/Hamlib.h
      SOURCES += src/util/Hamlib.cpp
      contains(QT,core) {
