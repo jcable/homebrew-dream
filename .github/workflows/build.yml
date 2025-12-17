@@ -97,7 +97,7 @@ jobs:
         cp qt-5.12.4-msvc2017_amd64/* lib
         cp -r C:/vcpkg/installed/x64-windows/include/* include
         cp -r hamlib-w64-4.6.5/include/* include
-        cp -r C:/vcpkg/installed/x64-windows/lib lib
+        cp -r C:/vcpkg/installed/x64-windows/lib/* lib
         cp hamlib-w64-4.6.5/lib/msvc/* lib
         find lib
 
