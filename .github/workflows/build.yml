@@ -108,7 +108,7 @@ jobs:
         qmake
         nmake
 
-    - name List
+    - name: List
       shell: bash
       run: find . -name \\*.exe
 
