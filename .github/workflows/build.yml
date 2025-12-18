@@ -105,9 +105,9 @@ jobs:
     - name: Build
       run: |
         lib /def:lib/libhamlib-4.def /machine:x64 /out:lib/hamlib.lib
-        dir lib
         qmake
         nmake
+        dir
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
