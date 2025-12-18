@@ -111,7 +111,8 @@ jobs:
     - name: List DLLs
       shell: bash
       run: |
-        find lib
+        find C:/vcpkg/installed/x64-windows
+        find hamlib-w64-4.6.5
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
