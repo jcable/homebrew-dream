@@ -107,7 +107,10 @@ jobs:
         lib /def:lib/libhamlib-4.def /machine:x64 /out:lib/hamlib.lib
         qmake
         nmake
-        dir
+
+    - name List
+      shell: bash
+      run: find . -name \\*.exe
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
