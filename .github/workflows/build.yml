@@ -50,7 +50,7 @@ jobs:
 
     - name: Install dependencies with vcpkg
       run: | # soapysdr
-        vcpkg install qt5[svg,concurrent,gui,opengl,widgets] fftw3 zlib dlfcn-win32 winpcap pthreads libsndfile fdk-aac opus speexdsp --triplet x64-windows
+        vcpkg install qt5[svg,concurrent,gui,opengl] fftw3 zlib dlfcn-win32 winpcap pthreads libsndfile fdk-aac opus speexdsp --triplet x64-windows
 
     # vcpkg qwt is Qt6. Need a Qt5 version
     - name: Download qwt src
