@@ -82,6 +82,8 @@ jobs:
       run: |
         mkdir -p include/qwt
         mkdir lib
+        cp buaabyl-qwt_windows-d0644a6/src/*.h include/qwt
+        cp qt-5.12.4-msvc2017_amd64/* lib
         cp -r C:/vcpkg/installed/x64-windows/include/* include
         cp -r hamlib-w64-4.6.5/include/* include
         cp -r C:/vcpkg/installed/x64-windows/lib/* lib
