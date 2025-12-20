@@ -80,7 +80,7 @@ jobs:
     - name: Move library files where dream.pro expects
       shell: bash
       run: |
-        mkdir include
+        mkdir -p include/qwt
         mkdir lib
         cp -r C:/vcpkg/installed/x64-windows/include/* include
         cp -r hamlib-w64-4.6.5/include/* include
