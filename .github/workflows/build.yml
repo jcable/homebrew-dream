@@ -50,7 +50,7 @@ jobs:
 
     - name: Install dependencies with vcpkg
       run: | # soapysdr
-        vcpkg install qwt fftw3 zlib dlfcn-win32 winpcap pthreads libsndfile fdk-aac opus speexdsp --triplet x64-windows
+        vcpkg install qwt qt5[tools,svg] fftw3 zlib dlfcn-win32 winpcap pthreads libsndfile fdk-aac opus speexdsp --triplet x64-windows
 
     - name: Download hamlib
       uses: robinraju/release-downloader@v1
